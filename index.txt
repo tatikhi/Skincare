@@ -1,489 +1,429 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Трекер ухода за кожей | 28 Дней</title>
-  <!-- Tailwind CSS -->
-  <script src="https://cdn.tailwindcss.com"></script>
-  <!-- FontAwesome Icons -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  <!-- Google Fonts (Inter & Playfair Display) -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,600;1,400&display=swap" rel="stylesheet">
-
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          colors: {
-            brand: {
-              cream: '#FAF7F2',
-              card: '#FFFFFF',
-              rose: '#E8D5C4',
-              sage: '#7D9D9C',
-              sageLight: '#E8F1F1',
-              lavender: '#E3DFFD',
-              peach: '#FFE5CA',
-              dark: '#2C3639',
-              muted: '#687980',
-              accent: '#435B66'
-            }
-          },
-          fontFamily: {
-            sans: ['Inter', 'sans-serif'],
-            serif: ['Playfair Display', 'serif']
-          }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Мой Уход за Кожей | 28 Дней</title>
+    <!-- FontAwesome для иконок -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --bg: #FAF7F2;
+            --card-bg: #FFFFFF;
+            --border: #E8D5C4;
+            --text-dark: #2C3639;
+            --text-muted: #687980;
+            --sage: #7D9D9C;
+            --sage-light: #E8F1F1;
+            --amber-bg: #FFFDF9;
+            --amber-border: #E0A96D;
+            --amber-text: #D98A2B;
+            --emerald: #10B981;
         }
-      }
-    }
-  </script>
 
-  <style>
-    body {
-      background-color: #FAF7F2;
-      color: #2C3639;
-      font-family: 'Inter', sans-serif;
-    }
-    
-    /* Custom Scrollbar */
-    ::-webkit-scrollbar {
-      width: 6px;
-      height: 6px;
-    }
-    ::-webkit-scrollbar-track {
-      background: #FAF7F2;
-    }
-    ::-webkit-scrollbar-thumb {
-      background: #C3ACD0;
-      border-radius: 4px;
-    }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        
+        body {
+            background-color: var(--bg);
+            color: var(--text-dark);
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            padding: 20px 12px;
+            max-width: 1100px;
+            margin: 0 auto;
+            padding-bottom: 50px;
+        }
 
-    /* Checkbox Styling */
-    .custom-checkbox {
-      appearance: none;
-      width: 22px;
-      height: 22px;
-      border: 2px solid #7D9D9C;
-      border-radius: 6px;
-      outline: none;
-      transition: all 0.2s ease-in-out;
-      cursor: pointer;
-      position: relative;
-      flex-shrink: 0;
-      background-color: #ffffff;
-    }
+        /* Header */
+        header {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 16px 20px;
+            margin-bottom: 20px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            gap: 12px;
+        }
 
-    .custom-checkbox:checked {
-      background-color: #7D9D9C;
-      border-color: #7D9D9C;
-    }
+        h1 { font-size: 20px; font-weight: 700; color: var(--text-dark); }
+        .subtitle { font-size: 12px; color: var(--text-muted); margin-top: 2px; }
 
-    .custom-checkbox:checked::after {
-      content: '\f00c';
-      font-family: 'Font Awesome 6 Free';
-      font-weight: 900;
-      color: white;
-      font-size: 13px;
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-    }
+        .time-badges { display: flex; gap: 8px; flex-wrap: wrap; font-size: 12px; }
+        .badge-time {
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .badge-morning { background: #FEF3C7; color: #78350F; }
+        .badge-evening { background: #E0E7FF; color: #3730A3; }
 
-    .custom-checkbox:hover {
-      border-color: #577D86;
-      box-shadow: 0 0 0 3px rgba(125, 157, 156, 0.2);
-    }
+        /* Dashboard Card */
+        .dashboard {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 20px;
+            margin-bottom: 24px;
+        }
 
-    /* Smooth Progress bar animation */
-    .progress-bar-fill {
-      transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-    }
-  </style>
+        .dash-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-bottom: 12px;
+        }
+
+        .progress-title { font-size: 11px; text-transform: uppercase; font-weight: 700; color: var(--sage); tracking-letter: 0.5px; }
+        .progress-val { font-size: 28px; font-weight: 800; color: var(--text-dark); }
+
+        /* Filter Tabs */
+        .filters { display: flex; gap: 6px; flex-wrap: wrap; }
+        .filter-btn {
+            background: #FFF;
+            border: 1px solid var(--border);
+            color: var(--text-muted);
+            padding: 6px 12px;
+            border-radius: 12px;
+            font-size: 12px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .filter-btn.active, .filter-btn:hover {
+            background: var(--sage);
+            color: #FFF;
+            border-color: var(--sage);
+        }
+
+        /* Progress Bar */
+        .bar-bg { background: #E5E7EB; border-radius: 10px; height: 10px; overflow: hidden; margin-bottom: 12px; }
+        .bar-fill { background: var(--sage); height: 100%; width: 0%; transition: width 0.3s ease; }
+
+        .dash-footer {
+            display: flex;
+            justify-content: space-between;
+            font-size: 12px;
+            color: var(--text-muted);
+            padding-top: 10px;
+            border-top: 1px solid #F3F4F6;
+        }
+
+        .reset-link { color: #EF4444; cursor: pointer; text-decoration: underline; border: none; background: none; font-size: 12px; }
+
+        /* Days Grid */
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 16px;
+        }
+
+        .card {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 16px;
+            transition: border-color 0.2s;
+        }
+
+        .card.retinol-day {
+            border-color: var(--amber-border);
+            background-color: var(--amber-bg);
+        }
+
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-bottom: 10px;
+            margin-bottom: 12px;
+            border-bottom: 1px dashed var(--border);
+        }
+
+        .day-num {
+            width: 32px;
+            height: 32px;
+            border-radius: 8px;
+            background: var(--sage-light);
+            color: var(--sage);
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+        }
+
+        .card.retinol-day .day-num {
+            background: #FEF3C7;
+            color: #92400E;
+        }
+
+        .day-title { font-size: 14px; font-weight: 700; }
+        .day-subtitle { font-size: 11px; color: var(--text-muted); }
+
+        /* Routine Slots */
+        .slot {
+            background: #FAFAFA;
+            border: 1px solid #F3F4F6;
+            border-radius: 10px;
+            padding: 10px;
+            margin-bottom: 10px;
+        }
+
+        .slot-morning { background: #FEFCE8; border-color: #FEF08A; }
+        .slot-evening { background: #EEF2FF; border-color: #E0E7FF; }
+        .slot-retinol { background: #FFFBEB; border-color: #FDE68A; }
+
+        .slot-header {
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+            margin-bottom: 8px;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .task-row {
+            display: flex;
+            align-items: flex-start;
+            gap: 8px;
+            margin-bottom: 6px;
+            cursor: pointer;
+            font-size: 12px;
+            line-height: 1.3;
+        }
+
+        .task-row:last-child { margin-bottom: 0; }
+
+        .task-row input {
+            width: 16px;
+            height: 16px;
+            margin-top: 1px;
+            accent-color: var(--sage);
+            cursor: pointer;
+            flex-shrink: 0;
+        }
+
+        .task-note { font-size: 10px; color: var(--text-muted); display: block; }
+        .retinol-text { color: var(--amber-text); font-weight: 700; }
+
+        .checked-text { text-decoration: line-through; color: #9CA3AF; }
+    </style>
 </head>
-<body class="min-h-screen pb-12 antialiased">
+<body>
 
-  <!-- Header Section -->
-  <header class="bg-white border-b border-brand-rose/40 sticky top-0 z-30 shadow-sm backdrop-blur-md bg-white/90">
-    <div class="max-w-6xl mx-auto px-4 py-4 sm:px-6 flex flex-col md:flex-row md:items-center md:justify-between gap-4">
-      <div>
-        <div class="flex items-center gap-2">
-          <span class="p-2 bg-brand-sageLight rounded-full text-brand-sage text-sm">
-            <i class="fa-solid fa-wand-magic-sparkles"></i>
-          </span>
-          <h1 class="font-serif text-2xl font-semibold text-brand-dark">Мой Уход за Кожей</h1>
+    <header>
+        <div>
+            <h1>Мой Уход за Кожей</h1>
+            <p class="subtitle">Персональный 28-дневный протокол с ретинолом Geltek</p>
         </div>
-        <p class="text-xs sm:text-sm text-brand-muted mt-0.5">Персональный 28-дневный протокол с ретинолом Geltek</p>
-      </div>
-
-      <!-- Time Schedule Badges -->
-      <div class="flex flex-wrap items-center gap-2 text-xs sm:text-sm">
-        <div class="flex items-center gap-2 bg-amber-50 border border-amber-200/60 text-amber-900 px-3 py-1.5 rounded-full font-medium shadow-sm">
-          <i class="fa-regular fa-sun text-amber-500 text-base"></i>
-          <span>Утренний уход: <b>10:00</b></span>
+        <div class="time-badges">
+            <div class="badge-time badge-morning"><i class="fa-regular fa-sun"></i> Утро: <b>10:00</b></div>
+            <div class="badge-time badge-evening"><i class="fa-regular fa-moon"></i> Вечер: <b>21:00</b></div>
         </div>
-        <div class="flex items-center gap-2 bg-indigo-50 border border-indigo-200/60 text-indigo-900 px-3 py-1.5 rounded-full font-medium shadow-sm">
-          <i class="fa-regular fa-moon text-indigo-400 text-base"></i>
-          <span>Вечерний уход: <b>21:00</b></span>
-        </div>
-      </div>
-    </div>
-  </header>
+    </header>
 
-  <main class="max-w-6xl mx-auto px-4 sm:px-6 pt-6 space-y-6">
-
-    <!-- Overall Progress Dashboard Card -->
-    <div class="bg-white rounded-2xl p-5 sm:p-6 shadow-sm border border-brand-rose/30 relative overflow-hidden">
-      <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 relative z-10">
-        <div class="space-y-1">
-          <span class="text-xs font-semibold uppercase tracking-wider text-brand-sage">Общий прогресс программы</span>
-          <div class="flex items-baseline gap-2">
-            <span id="overallPercentage" class="font-serif text-3xl font-bold text-brand-dark">0%</span>
-            <span id="overallFraction" class="text-xs text-brand-muted font-medium">(0 из 0 шагов выполнено)</span>
-          </div>
-        </div>
-
-        <!-- Filter Controls -->
-        <div class="flex flex-wrap items-center gap-2">
-          <button onclick="setFilter('all')" id="btn-filter-all" class="filter-btn px-3.5 py-1.5 text-xs sm:text-sm font-medium rounded-xl transition-all border border-brand-sage bg-brand-sage text-white">Все 4 недели</button>
-          <button onclick="setFilter(1)" id="btn-filter-1" class="filter-btn px-3.5 py-1.5 text-xs sm:text-sm font-medium rounded-xl transition-all border border-gray-200 bg-white text-brand-muted hover:border-brand-sage">1 Неделя</button>
-          <button onclick="setFilter(2)" id="btn-filter-2" class="filter-btn px-3.5 py-1.5 text-xs sm:text-sm font-medium rounded-xl transition-all border border-gray-200 bg-white text-brand-muted hover:border-brand-sage">2 Неделя</button>
-          <button onclick="setFilter(3)" id="btn-filter-3" class="filter-btn px-3.5 py-1.5 text-xs sm:text-sm font-medium rounded-xl transition-all border border-gray-200 bg-white text-brand-muted hover:border-brand-sage">3 Неделя</button>
-          <button onclick="setFilter(4)" id="btn-filter-4" class="filter-btn px-3.5 py-1.5 text-xs sm:text-sm font-medium rounded-xl transition-all border border-gray-200 bg-white text-brand-muted hover:border-brand-sage">4 Неделя</button>
-        </div>
-      </div>
-
-      <!-- Main Progress Bar -->
-      <div class="mt-4 w-full bg-gray-100 rounded-full h-3 overflow-hidden">
-        <div id="overallProgressBar" class="progress-bar-fill bg-gradient-to-r from-teal-400 to-brand-sage h-full w-0"></div>
-      </div>
-
-      <!-- Action Buttons Row -->
-      <div class="mt-4 pt-3 border-t border-gray-100 flex items-center justify-between text-xs text-brand-muted">
-        <div class="flex items-center gap-4">
-          <span class="flex items-center gap-1.5"><span class="w-2.5 h-2.5 rounded-full bg-amber-200 border border-amber-400"></span> Дни с Ретинолом</span>
-          <span class="flex items-center gap-1.5"><span class="w-2.5 h-2.5 rounded-full bg-teal-100 border border-teal-300"></span> Базовые дни</span>
-        </div>
-        <button onclick="confirmReset()" class="text-rose-500 hover:text-rose-700 hover:underline flex items-center gap-1 transition">
-          <i class="fa-solid fa-rotate-left"></i> Сбросить весь прогресс
-        </button>
-      </div>
-    </div>
-
-    <!-- Calendar Grid / List -->
-    <div id="daysContainer" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-4">
-      <!-- Dynamic Day Cards Generated via JS -->
-    </div>
-
-  </main>
-
-  <!-- Modal Confirmation for Reset -->
-  <div id="resetModal" class="fixed inset-0 bg-black/40 backdrop-blur-sm z-50 flex items-center justify-center p-4 hidden">
-    <div class="bg-white rounded-2xl max-w-sm w-full p-6 space-y-4 shadow-xl border border-gray-100">
-      <div class="text-center space-y-2">
-        <div class="w-12 h-12 bg-rose-100 text-rose-500 rounded-full flex items-center justify-center mx-auto text-xl">
-          <i class="fa-solid fa-triangle-exclamation"></i>
-        </div>
-        <h3 class="font-serif text-lg font-semibold text-gray-800">Сбросить все отметки?</h3>
-        <p class="text-xs text-gray-500 leading-relaxed">Все выполненные галочки будут удалены из памяти браузера. Это действие невозможно отменить.</p>
-      </div>
-      <div class="flex gap-3 pt-2">
-        <button onclick="closeResetModal()" class="flex-1 py-2 text-xs font-medium border border-gray-200 text-gray-600 rounded-xl hover:bg-gray-50 transition">Отмена</button>
-        <button onclick="executeReset()" class="flex-1 py-2 text-xs font-semibold bg-rose-500 text-white rounded-xl hover:bg-rose-600 transition shadow-sm">Да, сбросить</button>
-      </div>
-    </div>
-  </div>
-
-  <script>
-    // --- APP STATE & SCHEDULE CONFIGURATION ---
-    const STORAGE_KEY = 'skincare_tracker_state_v1';
-    let currentFilter = 'all';
-
-    // 28-Day Schedule Structure Starting on Wednesday
-    // Retinol Schedule: 
-    // Weeks 1-2: Wednesday (Day 1, Day 8) and Saturday (Day 4, Day 11)
-    // Weeks 3-4: Wednesday (Day 15, 22), Saturday (Day 18, 25), Tuesday (Day 21, 27)
-    const daysOfWeek = ['Среда', 'Четверг', 'Пятница', 'Суббота', 'Воскресенье', 'Понедельник', 'Вторник'];
-
-    const retinolDaysSet = new Set([1, 4, 8, 11, 15, 18, 21, 24, 27]);
-
-    function isRetinolDay(dayNum) {
-      return retinolDaysSet.has(dayNum);
-    }
-
-    // Generate Full 28 Days Dataset
-    function generateDaysData() {
-      const days = [];
-      for (let i = 1; i <= 28; i++) {
-        const weekNum = Math.ceil(i / 7);
-        const dayOfWeek = daysOfWeek[(i - 1) % 7];
-        const isRetinol = isRetinolDay(i);
-
-        days.push({
-          id: `day_${i}`,
-          dayNumber: i,
-          week: weekNum,
-          dayOfWeek: dayOfWeek,
-          isRetinol: isRetinol,
-          morningSteps: [
-            { id: `day_${i}_m1`, text: 'Мусс с алоэ вера', note: 'Очищение' },
-            { id: `day_${i}_m2`, text: 'Крем NMF-Protection', note: 'Восстановление и увлажнение' },
-            { id: `day_${i}_m3`, text: 'SPF-крем', note: 'Защита от солнца' }
-          ],
-          eveningSteps: isRetinol ? [
-            { id: `day_${i}_e1`, text: 'Мусс с алоэ вера', note: 'Очищение' },
-            { id: `day_${i}_e2`, text: 'Retiderm 0.25', note: 'Нанести на сухую кожу (через 15 мин после умывания)', isRetinolBadge: true },
-            { id: `day_${i}_e3`, text: 'Крем NMF-Protection', note: 'Закрыть через 20 минут после ретинола' }
-          ] : [
-            { id: `day_${i}_e1`, text: 'Мусс с алоэ вера', note: 'Очищение' },
-            { id: `day_${i}_e2`, text: 'Крем NMF-Protection', note: 'Восстановление и увлажнение' }
-          ]
-        });
-      }
-      return days;
-    }
-
-    const scheduleData = generateDaysData();
-
-    // LocalStorage Management
-    function loadSavedState() {
-      try {
-        const saved = localStorage.getItem(STORAGE_KEY);
-        return saved ? JSON.parse(saved) : {};
-      } catch (e) {
-        console.error("Failed to load state", e);
-        return {};
-      }
-    }
-
-    function saveState(state) {
-      try {
-        localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
-      } catch (e) {
-        console.error("Failed to save state", e);
-      }
-    }
-
-    let userState = loadSavedState();
-
-    // --- UI RENDER LOGIC ---
-    function renderApp() {
-      const container = document.getElementById('daysContainer');
-      container.innerHTML = '';
-
-      const filteredDays = scheduleData.filter(d => {
-        if (currentFilter === 'all') return true;
-        return d.week === parseInt(currentFilter);
-      });
-
-      filteredDays.forEach(day => {
-        const card = createDayCard(day);
-        container.appendChild(card);
-      });
-
-      updateOverallProgress();
-    }
-
-    function createDayCard(day) {
-      const card = document.createElement('div');
-      
-      // Calculate completion for this specific day
-      const allStepIds = [...day.morningSteps.map(s => s.id), ...day.eveningSteps.map(s => s.id)];
-      const completedSteps = allStepIds.filter(id => !!userState[id]);
-      const dayProgressPct = Math.round((completedSteps.length / allStepIds.length) * 100);
-      const isDayComplete = completedSteps.length === allStepIds.length;
-
-      card.className = `bg-white rounded-2xl p-5 shadow-sm border transition-all duration-300 relative ${
-        isDayComplete 
-          ? 'border-emerald-300 bg-emerald-50/10' 
-          : day.isRetinol 
-            ? 'border-amber-200/80 hover:border-amber-300' 
-            : 'border-brand-rose/30 hover:border-brand-sage/40'
-      }`;
-
-      card.innerHTML = `
-        <!-- Card Header -->
-        <div class="flex items-center justify-between border-b border-gray-100 pb-3 mb-4">
-          <div class="flex items-center gap-3">
-            <span class="w-9 h-9 rounded-xl ${day.isRetinol ? 'bg-amber-100 text-amber-800' : 'bg-brand-sageLight text-brand-sage'} font-serif font-bold text-sm flex items-center justify-center">
-              ${day.dayNumber}
-            </span>
+    <div class="dashboard">
+        <div class="dash-header">
             <div>
-              <div class="flex items-center gap-2">
-                <h3 class="font-semibold text-sm text-brand-dark">${day.dayOfWeek}</h3>
-                <span class="text-[10px] text-brand-muted bg-gray-100 px-2 py-0.5 rounded-full font-medium">Неделя ${day.week}</span>
-              </div>
-              <p class="text-xs text-brand-muted mt-0.5">
-                ${day.isRetinol ? '<span class="text-amber-700 font-medium"><i class="fa-solid fa-sparkles text-amber-500"></i> День с Ретинолом</span>' : 'Базовый восстановливающий уход'}
-              </p>
+                <div class="progress-title">Общий прогресс программы</div>
+                <div>
+                    <span id="overallPercentage" class="progress-val">0%</span>
+                    <span id="overallFraction" style="font-size: 12px; color: var(--text-muted);">(0 из 0 выполнено)</span>
+                </div>
             </div>
-          </div>
-
-          <!-- Day Completion Badge -->
-          <div class="text-right">
-            <span id="pct_${day.id}" class="text-xs font-bold ${isDayComplete ? 'text-emerald-600' : 'text-brand-muted'}">
-              ${dayProgressPct}%
-            </span>
-            <div class="w-12 bg-gray-100 rounded-full h-1.5 mt-1 overflow-hidden">
-              <div id="bar_${day.id}" class="progress-bar-fill ${isDayComplete ? 'bg-emerald-500' : 'bg-brand-sage'} h-full" style="width: ${dayProgressPct}%"></div>
+            <div class="filters">
+                <button class="filter-btn active" onclick="setFilter('all', this)">Все 4 недели</button>
+                <button class="filter-btn" onclick="setFilter(1, this)">1 Неделя</button>
+                <button class="filter-btn" onclick="setFilter(2, this)">2 Неделя</button>
+                <button class="filter-btn" onclick="setFilter(3, this)">3 Неделя</button>
+                <button class="filter-btn" onclick="setFilter(4, this)">4 Неделя</button>
             </div>
-          </div>
         </div>
 
-        <!-- Routine Slots Grid -->
-        <div class="space-y-4">
-          
-          <!-- MORNING (10:00) -->
-          <div class="bg-amber-50/40 rounded-xl p-3.5 border border-amber-100/60">
-            <div class="flex items-center justify-between mb-2.5">
-              <span class="text-xs font-semibold text-amber-900 flex items-center gap-1.5">
-                <i class="fa-regular fa-sun text-amber-500"></i> Утро (10:00)
-              </span>
-              <span class="text-[10px] text-amber-700/70 font-medium">3 шага</span>
-            </div>
-            <div class="space-y-2">
-              ${day.morningSteps.map(step => renderStepRow(step)).join('')}
-            </div>
-          </div>
-
-          <!-- EVENING (21:00) -->
-          <div class="${day.isRetinol ? 'bg-amber-50/60 border-amber-200/80' : 'bg-indigo-50/30 border-indigo-100/60'} rounded-xl p-3.5 border">
-            <div class="flex items-center justify-between mb-2.5">
-              <span class="text-xs font-semibold ${day.isRetinol ? 'text-amber-900' : 'text-indigo-900'} flex items-center gap-1.5">
-                <i class="fa-regular fa-moon ${day.isRetinol ? 'text-amber-600' : 'text-indigo-400'}"></i> Вечер (21:00)
-              </span>
-              <span class="text-[10px] ${day.isRetinol ? 'text-amber-800 bg-amber-200/60' : 'text-indigo-700 bg-indigo-100/60'} px-2 py-0.5 rounded-full font-medium">
-                ${day.isRetinol ? 'Retiderm 0.25%' : 'Базовое увлажнение'}
-              </span>
-            </div>
-            <div class="space-y-2">
-              ${day.eveningSteps.map(step => renderStepRow(step)).join('')}
-            </div>
-          </div>
-
+        <div class="bar-bg">
+            <div id="overallProgressBar" class="bar-fill"></div>
         </div>
-      `;
 
-      return card;
-    }
+        <div class="dash-footer">
+            <span>✨ Старт программы со Среды</span>
+            <button class="reset-link" onclick="executeReset()">Сбросить прогресс</button>
+        </div>
+    </div>
 
-    function renderStepRow(step) {
-      const isChecked = !!userState[step.id];
-      return `
-        <label class="flex items-start gap-2.5 cursor-pointer group select-none">
-          <input 
-            type="checkbox" 
-            class="custom-checkbox mt-0.5" 
-            id="${step.id}" 
-            ${isChecked ? 'checked' : ''} 
-            onchange="toggleStep('${step.id}')"
-          />
-          <div class="text-xs leading-tight">
-            <span class="font-medium text-brand-dark group-hover:text-black ${isChecked ? 'line-through text-gray-400' : ''}">
-              ${step.text}
-            </span>
-            ${step.note ? `<p class="text-[11px] text-brand-muted mt-0.5 ${isChecked ? 'text-gray-300' : ''}">${step.note}</p>` : ''}
-          </div>
-        </label>
-      `;
-    }
+    <div id="daysContainer" class="grid"></div>
 
-    // --- INTERACTION & PROGRESS LOGIC ---
-    function toggleStep(stepId) {
-      const checkbox = document.getElementById(stepId);
-      if (!checkbox) return;
+    <script>
+        var STORAGE_KEY = 'skincare_tracker_standalone_v2';
+        var currentFilter = 'all';
+        var daysOfWeek = ['Среда', 'Четверг', 'Пятница', 'Суббота', 'Воскресенье', 'Понедельник', 'Вторник'];
+        var retinolDaysSet = [1, 4, 8, 11, 15, 18, 21, 24, 27];
 
-      userState[stepId] = checkbox.checked;
-      saveState(userState);
+        function isRetinolDay(d) {
+            return retinolDaysSet.indexOf(d) !== -1;
+        }
 
-      // Find affected day
-      const affectedDay = scheduleData.find(d => 
-        d.morningSteps.some(s => s.id === stepId) || d.eveningSteps.some(s => s.id === stepId)
-      );
+        function loadState() {
+            try {
+                var saved = localStorage.getItem(STORAGE_KEY);
+                return saved ? JSON.parse(saved) : {};
+            } catch(e) { return {}; }
+        }
 
-      if (affectedDay) {
-        updateDayProgress(affectedDay);
-      }
+        function saveState(state) {
+            try {
+                localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+            } catch(e) {}
+            updateOverallProgress();
+        }
 
-      updateOverallProgress();
-    }
+        var userState = loadState();
 
-    function updateDayProgress(day) {
-      const allStepIds = [...day.morningSteps.map(s => s.id), ...day.eveningSteps.map(s => s.id)];
-      const completedSteps = allStepIds.filter(id => !!userState[id]);
-      const pct = Math.round((completedSteps.length / allStepIds.length) * 100);
+        function toggleStep(id) {
+            userState[id] = !userState[id];
+            saveState(userState);
+            
+            var label = document.getElementById('label_' + id);
+            if (label) {
+                if (userState[id]) {
+                    label.classList.add('checked-text');
+                } else {
+                    label.classList.remove('checked-text');
+                }
+            }
+        }
 
-      const pctElem = document.getElementById(`pct_${day.id}`);
-      const barElem = document.getElementById(`bar_${day.id}`);
+        function generateData() {
+            var days = [];
+            for (var i = 1; i <= 28; i++) {
+                var weekNum = Math.ceil(i / 7);
+                var dayName = daysOfWeek[(i - 1) % 7];
+                var retinol = isRetinolDay(i);
 
-      if (pctElem) {
-        pctElem.innerText = `${pct}%`;
-        pctElem.className = `text-xs font-bold ${pct === 100 ? 'text-emerald-600' : 'text-brand-muted'}`;
-      }
+                days.push({
+                    dayNum: i,
+                    week: weekNum,
+                    dayName: dayName,
+                    isRetinol: retinol
+                });
+            }
+            return days;
+        }
 
-      if (barElem) {
-        barElem.style.width = `${pct}%`;
-        barElem.className = `progress-bar-fill ${pct === 100 ? 'bg-emerald-500' : 'bg-brand-sage'} h-full`;
-      }
-    }
+        var daysData = generateData();
 
-    function updateOverallProgress() {
-      let totalSteps = 0;
-      let completedSteps = 0;
+        function renderApp() {
+            var container = document.getElementById('daysContainer');
+            container.innerHTML = '';
 
-      scheduleData.forEach(day => {
-        const stepIds = [...day.morningSteps.map(s => s.id), ...day.eveningSteps.map(s => s.id)];
-        totalSteps += stepIds.length;
-        stepIds.forEach(id => {
-          if (userState[id]) completedSteps++;
-        });
-      });
+            for (var i = 0; i < daysData.length; i++) {
+                var day = daysData[i];
 
-      const overallPct = totalSteps > 0 ? Math.round((completedSteps / totalSteps) * 100) : 0;
+                if (currentFilter !== 'all' && day.week !== parseInt(currentFilter)) {
+                    continue;
+                }
 
-      document.getElementById('overallPercentage').innerText = `${overallPct}%`;
-      document.getElementById('overallFraction').innerText = `(${completedSteps} из ${totalSteps} шагов выполнено)`;
-      document.getElementById('overallProgressBar').style.width = `${overallPct}%`;
-    }
+                var card = document.createElement('div');
+                card.className = 'card' + (day.isRetinol ? ' retinol-day' : '');
 
-    // --- FILTERS ---
-    function setFilter(filter) {
-      currentFilter = filter;
+                var m1 = 'd' + day.dayNum + '_m1';
+                var m2 = 'd' + day.dayNum + '_m2';
+                var m3 = 'd' + day.dayNum + '_m3';
 
-      document.querySelectorAll('.filter-btn').forEach(btn => {
-        btn.className = 'filter-btn px-3.5 py-1.5 text-xs sm:text-sm font-medium rounded-xl transition-all border border-gray-200 bg-white text-brand-muted hover:border-brand-sage';
-      });
+                var e1 = 'd' + day.dayNum + '_e1';
+                var e2 = 'd' + day.dayNum + '_e2';
+                var e3 = 'd' + day.dayNum + '_e3';
 
-      const activeBtn = document.getElementById(`btn-filter-${filter}`);
-      if (activeBtn) {
-        activeBtn.className = 'filter-btn px-3.5 py-1.5 text-xs sm:text-sm font-medium rounded-xl transition-all border border-brand-sage bg-brand-sage text-white shadow-sm';
-      }
+                var eveningHtml = '';
+                if (day.isRetinol) {
+                    eveningHtml = 
+                        '<div class="slot slot-retinol">' +
+                            '<div class="slot-header" style="color:#92400E;"><span>🌙 Вечер (21:00)</span><span>Retiderm 0.25%</span></div>' +
+                            '<label class="task-row"><input type="checkbox" ' + (userState[e1] ? 'checked' : '') + ' onchange="toggleStep(\'' + e1 + '\')"><span id="label_' + e1 + '" class="' + (userState[e1] ? 'checked-text' : '') + '">Мусс с алоэ вера<span class="task-note">Очищение</span></span></label>' +
+                            '<label class="task-row"><input type="checkbox" ' + (userState[e2] ? 'checked' : '') + ' onchange="toggleStep(\'' + e2 + '\')"><span id="label_' + e2 + '" class="retinol-text ' + (userState[e2] ? 'checked-text' : '') + '">Retiderm 0.25<span class="task-note">На сухую кожу через 15 мин</span></span></label>' +
+                            '<label class="task-row"><input type="checkbox" ' + (userState[e3] ? 'checked' : '') + ' onchange="toggleStep(\'' + e3 + '\')"><span id="label_' + e3 + '" class="' + (userState[e3] ? 'checked-text' : '') + '">Крем NMF-Protection<span class="task-note">Закрыть через 20 минут</span></span></label>' +
+                        '</div>';
+                } else {
+                    eveningHtml = 
+                        '<div class="slot slot-evening">' +
+                            '<div class="slot-header" style="color:#3730A3;"><span>🌙 Вечер (21:00)</span><span>Увлажнение</span></div>' +
+                            '<label class="task-row"><input type="checkbox" ' + (userState[e1] ? 'checked' : '') + ' onchange="toggleStep(\'' + e1 + '\')"><span id="label_' + e1 + '" class="' + (userState[e1] ? 'checked-text' : '') + '">Мусс с алоэ вера<span class="task-note">Очищение</span></span></label>' +
+                            '<label class="task-row"><input type="checkbox" ' + (userState[e2] ? 'checked' : '') + ' onchange="toggleStep(\'' + e2 + '\')"><span id="label_' + e2 + '" class="' + (userState[e2] ? 'checked-text' : '') + '">Крем NMF-Protection<span class="task-note">Восстановление</span></span></label>' +
+                        '</div>';
+                }
 
-      renderApp();
-    }
+                card.innerHTML = 
+                    '<div class="card-header">' +
+                        '<div style="display:flex; align-items:center; gap:10px;">' +
+                            '<div class="day-num">' + day.dayNum + '</div>' +
+                            '<div>' +
+                                '<div class="day-title">' + day.dayName + '</div>' +
+                                '<div class="day-subtitle">' + (day.isRetinol ? '✨ День с ретинолом' : 'Базовый уход') + ' • Неделя ' + day.week + '</div>' +
+                            '</div>' +
+                        '</div>' +
+                    '</div>' +
 
-    // --- RESET MODAL LOGIC ---
-    function confirmReset() {
-      document.getElementById('resetModal').classList.remove('hidden');
-    }
+                    '<div class="slot slot-morning">' +
+                        '<div class="slot-header" style="color:#78350F;"><span>☀️ Утро (10:00)</span><span>3 шага</span></div>' +
+                        '<label class="task-row"><input type="checkbox" ' + (userState[m1] ? 'checked' : '') + ' onchange="toggleStep(\'' + m1 + '\')"><span id="label_' + m1 + '" class="' + (userState[m1] ? 'checked-text' : '') + '">Мусс с алоэ вера<span class="task-note">Очищение</span></span></label>' +
+                        '<label class="task-row"><input type="checkbox" ' + (userState[m2] ? 'checked' : '') + ' onchange="toggleStep(\'' + m2 + '\')"><span id="label_' + m2 + '" class="' + (userState[m2] ? 'checked-text' : '') + '">Крем NMF-Protection<span class="task-note">Увлажнение</span></span></label>' +
+                        '<label class="task-row"><input type="checkbox" ' + (userState[m3] ? 'checked' : '') + ' onchange="toggleStep(\'' + m3 + '\')"><span id="label_' + m3 + '" class="' + (userState[m3] ? 'checked-text' : '') + '">SPF-крем<span class="task-note">Защита от солнца</span></span></label>' +
+                    '</div>' +
 
-    function closeResetModal() {
-      document.getElementById('resetModal').classList.add('hidden');
-    }
+                    eveningHtml;
 
-    function executeReset() {
-      userState = {};
-      saveState(userState);
-      closeResetModal();
-      renderApp();
-    }
+                container.appendChild(card);
+            }
 
-    // Initialize App
-    window.onload = function() {
-      renderApp();
-    };
-  </script>
+            updateOverallProgress();
+        }
+
+        function updateOverallProgress() {
+            var total = 0;
+            var completed = 0;
+
+            for (var i = 1; i <= 28; i++) {
+                var isRet = isRetinolDay(i);
+                var keys = ['d' + i + '_m1', 'd' + i + '_m2', 'd' + i + '_m3', 'd' + i + '_e1', 'd' + i + '_e2'];
+                if (isRet) keys.push('d' + i + '_e3');
+
+                for (var k = 0; k < keys.length; k++) {
+                    total++;
+                    if (userState[keys[k]]) completed++;
+                }
+            }
+
+            var pct = total > 0 ? Math.round((completed / total) * 100) : 0;
+
+            document.getElementById('overallPercentage').innerText = pct + '%';
+            document.getElementById('overallFraction').innerText = '(' + completed + ' из ' + total + ' выполнено)';
+            document.getElementById('overallProgressBar').style.width = pct + '%';
+        }
+
+        function setFilter(filter, btn) {
+            currentFilter = filter;
+            var btns = document.querySelectorAll('.filter-btn');
+            for (var i = 0; i < btns.length; i++) btns[i].classList.remove('active');
+            if (btn) btn.classList.add('active');
+            renderApp();
+        }
+
+        function executeReset() {
+            if (confirm('Сбросить весь отмеченный прогресс?')) {
+                userState = {};
+                saveState(userState);
+                renderApp();
+            }
+        }
+
+        window.onload = function() {
+            renderApp();
+        };
+    </script>
 </body>
 </html>
