@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Мой Уход за Кожей | 28 Дней</title>
+    <title>Мой Уход за Кожей | 3 Месяца</title>
     <!-- FontAwesome для иконок -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
@@ -145,8 +145,8 @@
         }
 
         .day-num {
-            width: 32px;
-            height: 32px;
+            width: 36px;
+            height: 36px;
             border-radius: 8px;
             background: var(--sage-light);
             color: var(--sage);
@@ -154,7 +154,7 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 14px;
+            font-size: 13px;
         }
 
         .card.retinol-day .day-num {
@@ -219,7 +219,7 @@
     <header>
         <div>
             <h1>Мой Уход за Кожей</h1>
-            <p class="subtitle">Персональный 28-дневный протокол с ретинолом Geltek</p>
+            <p class="subtitle">Персональный 3-месячный протокол (84 дня) с ретинолом Geltek</p>
         </div>
         <div class="time-badges">
             <div class="badge-time badge-morning"><i class="fa-regular fa-sun"></i> Утро: <b>10:00</b></div>
@@ -230,18 +230,17 @@
     <div class="dashboard">
         <div class="dash-header">
             <div>
-                <div class="progress-title">Общий прогресс программы</div>
+                <div class="progress-title">Общий прогресс (84 дня)</div>
                 <div>
                     <span id="overallPercentage" class="progress-val">0%</span>
                     <span id="overallFraction" style="font-size: 12px; color: var(--text-muted);">(0 из 0 выполнено)</span>
                 </div>
             </div>
             <div class="filters">
-                <button class="filter-btn active" onclick="setFilter('all', this)">Все 4 недели</button>
-                <button class="filter-btn" onclick="setFilter(1, this)">1 Неделя</button>
-                <button class="filter-btn" onclick="setFilter(2, this)">2 Неделя</button>
-                <button class="filter-btn" onclick="setFilter(3, this)">3 Неделя</button>
-                <button class="filter-btn" onclick="setFilter(4, this)">4 Неделя</button>
+                <button class="filter-btn active" onclick="setFilter('all', this)">Все 3 месяца</button>
+                <button class="filter-btn" onclick="setFilter('m1', this)">Месяц 1</button>
+                <button class="filter-btn" onclick="setFilter('m2', this)">Месяц 2</button>
+                <button class="filter-btn" onclick="setFilter('m3', this)">Месяц 3</button>
             </div>
         </div>
 
@@ -258,13 +257,20 @@
     <div id="daysContainer" class="grid"></div>
 
     <script>
-        var STORAGE_KEY = 'skincare_tracker_no_spf_v1';
+        var STORAGE_KEY = 'skincare_tracker_3months_v1';
         var currentFilter = 'all';
         var daysOfWeek = ['Среда', 'Четверг', 'Пятница', 'Суббота', 'Воскресенье', 'Понедельник', 'Вторник'];
-        var retinolDaysSet = [15, 18, 22, 24, 26]; // Ретинол на 3-й (Ср, Сб) и 4-й (Ср, Пт, Вс) неделях
 
-        function isRetinolDay(d) {
-            return retinolDaysSet.indexOf(d) !== -1;
+        // Расписание ретинола на 84 дня:
+        // Месяц 1 (Недели 1-2: 0; Неделя 3: Ср, Сб; Неделя 4: Ср, Пт, Вс)
+        // Месяцы 2 и 3: регулярный уход (Среда, Пятница, Воскресенье)
+        function checkIsRetinolDay(d) {
+            if (d < 15) return false; // первые 2 недели без ретинола
+            if (d === 15 || d === 18) return true; // 3 неделя: Ср, Сб
+            
+            // Начиная с 4 недели (день 22+): Среда (день 1 в неделе), Пятница (день 3), Воскресенье (день 5)
+            var dayInWeek = ((d - 1) % 7) + 1;
+            return (dayInWeek === 1 || dayInWeek === 3 || dayInWeek === 5);
         }
 
         function loadState() {
@@ -299,14 +305,16 @@
 
         function generateData() {
             var days = [];
-            for (var i = 1; i <= 28; i++) {
+            for (var i = 1; i <= 84; i++) {
                 var weekNum = Math.ceil(i / 7);
+                var monthNum = Math.ceil(i / 28);
                 var dayName = daysOfWeek[(i - 1) % 7];
-                var retinol = isRetinolDay(i);
+                var retinol = checkIsRetinolDay(i);
 
                 days.push({
                     dayNum: i,
                     week: weekNum,
+                    month: monthNum,
                     dayName: dayName,
                     isRetinol: retinol
                 });
@@ -323,9 +331,9 @@
             for (var i = 0; i < daysData.length; i++) {
                 var day = daysData[i];
 
-                if (currentFilter !== 'all' && day.week !== parseInt(currentFilter)) {
-                    continue;
-                }
+                if (currentFilter === 'm1' && day.month !== 1) continue;
+                if (currentFilter === 'm2' && day.month !== 2) continue;
+                if (currentFilter === 'm3' && day.month !== 3) continue;
 
                 var card = document.createElement('div');
                 card.className = 'card' + (day.isRetinol ? ' retinol-day' : '');
@@ -358,10 +366,10 @@
                 card.innerHTML = 
                     '<div class="card-header">' +
                         '<div style="display:flex; align-items:center; gap:10px;">' +
-                            '<div class="day-num">' + day.dayNum + '</div>' +
+                            '<div class="day-num">Д' + day.dayNum + '</div>' +
                             '<div>' +
                                 '<div class="day-title">' + day.dayName + '</div>' +
-                                '<div class="day-subtitle">' + (day.isRetinol ? '✨ День с ретинолом' : 'Базовый уход') + ' • Неделя ' + day.week + '</div>' +
+                                '<div class="day-subtitle">' + (day.isRetinol ? '✨ День с ретинолом' : 'Базовый уход') + ' • Месяц ' + day.month + ', Нед. ' + day.week + '</div>' +
                             '</div>' +
                         '</div>' +
                     '</div>' +
@@ -384,8 +392,8 @@
             var total = 0;
             var completed = 0;
 
-            for (var i = 1; i <= 28; i++) {
-                var isRet = isRetinolDay(i);
+            for (var i = 1; i <= 84; i++) {
+                var isRet = checkIsRetinolDay(i);
                 var keys = ['d' + i + '_m1', 'd' + i + '_m2', 'd' + i + '_e1', 'd' + i + '_e2'];
                 if (isRet) keys.push('d' + i + '_e3');
 
@@ -411,7 +419,7 @@
         }
 
         function executeReset() {
-            if (confirm('Сбросить весь отмеченный прогресс?')) {
+            if (confirm('Сбросить весь отмеченный прогресс за 3 месяца?')) {
                 userState = {};
                 saveState(userState);
                 renderApp();
