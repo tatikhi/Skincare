@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Трекер Ухода за Кожей | 4 Недели</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Marcellus&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        cream: '#FDFBF7',
+                        sand: '#F4EFEA',
+                        nude: '#E8DFD8',
+                        warmTaupe: '#8C7A6B',
+                        deepTaupe: '#4A3E3D',
+                        sage: '#A3B18A',
+                        sageLight: '#E8EDE0',
+                        amberSoft: '#E0A96D',
+                        amberLight: '#FDF3E7',
+                        roseSoft: '#D9A0A0',
+                    },
+                    fontFamily: {
+                        serif: ['Marcellus', 'serif'],
+                        sans: ['Plus Jakarta Sans', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            background-color: #FDFBF7;
+            color: #4A3E3D;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+        .custom-checkbox {
+            appearance: none;
+            width: 1.25rem;
+            height: 1.25rem;
+            border: 2px solid #C5B8AC;
+            border-radius: 0.375rem;
+            outline: none;
+            transition: all 0.2s ease;
+            cursor: pointer;
+            position: relative;
+            background-color: #FFFFFF;
+        }
+        .custom-checkbox:checked {
+            background-color: #A3B18A;
+            border-color: #A3B18A;
+        }
+        .custom-checkbox:checked::after {
+            content: '';
+            position: absolute;
+            left: 0.35rem;
+            top: 0.15rem;
+            width: 0.35rem;
+            height: 0.65rem;
+            border: solid white;
+            border-width: 0 2px 2px 0;
+            transform: rotate(45deg);
+        }
+        .custom-checkbox:hover {
+            border-color: #8C7A6B;
+        }
+    </style>
+</head>
+<body class="min-h-screen pb-12">
+
+    <!-- Шапка -->
+    <header class="bg-sand/60 border-b border-nude backdrop-blur-md sticky top-0 z-50 py-4 px-4 sm:px-8">
+        <div class="max-w-5xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4">
+            <div>
+                <h1 class="font-serif text-2xl sm:text-3xl text-deepTaupe tracking-wide">Программа ухода за кожей</h1>
+                <p class="text-xs sm:text-sm text-warmTaupe mt-0.5">Курс: 4 Недели (28 Дней) • Старт: Среда</p>
+            </div>
+            
+            <!-- Общий прогресс -->
+            <div class="flex items-center gap-4 bg-white/80 px-4 py-2 rounded-2xl border border-nude shadow-sm">
+                <div class="text-right">
+                    <div class="text-xs text-warmTaupe font-medium">Общий прогресс</div>
+                    <div id="overall-percentage" class="text-lg font-bold text-deepTaupe">0%</div>
+                </div>
+                <div class="w-12 h-12 rounded-full bg-sand flex items-center justify-center p-1 relative">
+                    <svg class="w-full h-full transform -rotate-90" viewBox="0 0 36 36">
+                        <path class="text-nude" stroke-width="3" stroke="currentColor" fill="none" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" />
+                        <path id="progress-circle" class="text-sage" stroke-dasharray="0, 100" stroke-width="3.5" stroke-linecap="round" stroke="currentColor" fill="none" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" />
+                    </svg>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="max-w-5xl mx-auto px-4 sm:px-8 mt-8">
+
+        <!-- Навигация по неделям -->
+        <div class="flex flex-wrap justify-center gap-2 sm:gap-3 mb-8">
+            <button onclick="filterWeek('all')" id="tab-all" class="tab-btn active px-4 py-2 rounded-xl text-xs sm:text-sm font-medium transition-all bg-deepTaupe text-white shadow-sm">
+                Все 4 недели
+            </button>
+            <button onclick="filterWeek(1)" id="tab-1" class="tab-btn px-4 py-2 rounded-xl text-xs sm:text-sm font-medium transition-all bg-white border border-nude text-warmTaupe hover:bg-sand">
+                Неделя 1 (Адаптация)
+            </button>
+            <button onclick="filterWeek(2)" id="tab-2" class="tab-btn px-4 py-2 rounded-xl text-xs sm:text-sm font-medium transition-all bg-white border border-nude text-warmTaupe hover:bg-sand">
+                Неделя 2
+            </button>
+            <button onclick="filterWeek(3)" id="tab-3" class="tab-btn px-4 py-2 rounded-xl text-xs sm:text-sm font-medium transition-all bg-white border border-nude text-warmTaupe hover:bg-sand">
+                Неделя 3 (Ввод ретинола)
+            </button>
+            <button onclick="filterWeek(4)" id="tab-4" class="tab-btn px-4 py-2 rounded-xl text-xs sm:text-sm font-medium transition-all bg-white border border-nude text-warmTaupe hover:bg-sand">
+                Неделя 4
+            </button>
+        </div>
+
+        <!-- Контейнер календаря -->
+        <div id="calendar-container" class="space-y-8">
+            <!-- Дни будут сгенерированы скриптом -->
+        </div>
+
+        <!-- Кнопка сброса -->
+        <div class="mt-12 text-center">
+            <button onclick="resetTracker()" class="text-xs text-warmTaupe hover:text-roseSoft underline transition-colors">
+                Сбросить весь прогресс
+            </button>
+        </div>
+
+    </main>
+
+    <script>
+        // Структура данных ухода
+        const weekDays = ['Среда', 'Четверг', 'Пятница', 'Суббота', 'Воскресенье', 'Понедельник', 'Вторник'];
+        
+        // Ретинол: Вт и Пт на 3-й неделе; Вт, Чт, Сб на 4-й неделе
+        const retinolDays = {
+            3: [0, 3], // Среда(0), Суббота(3) в рамках цикла Ср-Вт
+            4: [0, 2, 4]  // Среда, Пятница, Воскресенье
+        };
+
+        const morningRoutine = [
+            { id: 'm1', text: 'Умывание муссом Geltek с алоэ вера' },
+            { id: 'm2', text: 'Крем Geltek NMF-Protection' },
+            { id: 'm3', text: 'Солнцезащитный крем (SPF 30-50)' }
+        ];
+
+        function getEveningRoutine(isRetinol) {
+            if (isRetinol) {
+                return [
+                    { id: 'e1', text: 'Умывание муссом Geltek с алоэ вера' },
+                    { id: 'e2', text: 'Сухая кожа (10 мин) + Retiderm 0.25' },
+                    { id: 'e3', text: 'Пауза 20 мин + NMF-Protection' }
+                ];
+            } else {
+                return [
+                    { id: 'e1', text: 'Умывание муссом Geltek с алоэ вера' },
+                    { id: 'e2', text: 'Крем Geltek NMF-Protection' }
+                ];
+            }
+        }
+
+        // Загрузка состояния из localStorage
+        function loadState() {
+            const saved = localStorage.getItem('skincare_tracker_state');
+            return saved ? JSON.parse(saved) : {};
+        }
+
+        // Сохранение состояния
+        function saveState(state) {
+            localStorage.setItem('skincare_tracker_state', JSON.stringify(state));
+            updateOverallProgress();
+        }
+
+        // Переключение чекбокса
+        function toggleCheck(key) {
+            const state = loadState();
+            state[key] = !state[key];
+            saveState(state);
+            
+            const checkbox = document.getElementById(key);
+            if (checkbox) {
+                checkbox.checked = state[key];
+            }
+            updateDayProgress(key.split('-')[0]);
+        }
+
+        // Создание элементов календаря
+        function renderCalendar() {
+            const container = document.getElementById('calendar-container');
+            container.innerHTML = '';
+            const state = loadState();
+
+            let totalDaysCount = 28;
+            let currentDayNum = 1;
+
+            for (let week = 1; week <= 4; week++) {
+                const weekSection = document.createElement('div');
+                weekSection.className = `week-section week-${week} space-y-4`;
+                
+                // Заголовок недели
+                const weekHeader = document.createElement('div');
+                weekHeader.className = 'flex items-center gap-3 border-b border-nude pb-2 pt-4';
+                weekHeader.innerHTML = `
+                    <h2 class="font-serif text-xl text-deepTaupe">Неделя ${week}</h2>
+                    <span class="text-xs px-2.5 py-1 rounded-full ${week >= 3 ? 'bg-amberLight text-amberSoft font-semibold border border-amberSoft/20' : 'bg-sand text-warmTaupe'}">
+                        ${week === 1 ? 'Базовый уход (Адаптация)' : week === 2 ? 'Базовый уход' : week === 3 ? 'Ввод ретинола (2 р/нед)' : 'Ретинол (3 р/нед)'}
+                    </span>
+                `;
+                weekSection.appendChild(weekHeader);
+
+                const daysGrid = document.createElement('div');
+                daysGrid.className = 'grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4';
+
+                for (let dayIdx = 0; dayIdx < 7; dayIdx++) {
+                    const dayNum = currentDayNum;
+                    const dayName = weekDays[dayIdx];
+                    const isRetinolDay = (week === 3 && (dayIdx === 2 || dayIdx === 5)) || (week === 4 && (dayIdx === 2 || dayIdx === 4 || dayIdx === 6)); // Подстройка под Вт/Пт/Сб
+                    
+                    const dayCard = document.createElement('div');
+                    dayCard.className = `bg-white rounded-2xl p-5 border ${isRetinolDay ? 'border-amberSoft/40 shadow-sm bg-gradient-to-b from-amberLight/30 to-white' : 'border-nude'} transition-all hover:shadow-md relative flex flex-col justify-between`;
+                    dayCard.id = `day-card-${dayNum}`;
+
+                    const eveningSteps = getEveningRoutine(isRetinolDay);
+
+                    let morningHtml = morningRoutine.map(step => {
+                        const key = `d${dayNum}-${step.id}`;
+                        const checked = state[key] ? 'checked' : '';
+                        return `
+                            <label class="flex items-start gap-2.5 text-xs text-deepTaupe/90 cursor-pointer group">
+                                <input type="checkbox" id="${key}" ${checked} onchange="toggleCheck('${key}')" class="custom-checkbox mt-0.5">
+                                <span class="group-hover:text-deepTaupe leading-tight">${step.text}</span>
+                            </label>
+                        `;
+                    }).join('');
+
+                    let eveningHtml = eveningSteps.map(step => {
+                        const key = `d${dayNum}-${step.id}`;
+                        const checked = state[key] ? 'checked' : '';
+                        const isRetinolStep = step.text.includes('Retiderm');
+                        return `
+                            <label class="flex items-start gap-2.5 text-xs text-deepTaupe/90 cursor-pointer group">
+                                <input type="checkbox" id="${key}" ${checked} onchange="toggleCheck('${key}')" class="custom-checkbox mt-0.5">
+                                <span class="group-hover:text-deepTaupe leading-tight ${isRetinolStep ? 'font-semibold text-amberSoft' : ''}">${step.text}</span>
+                            </label>
+                        `;
+                    }).join('');
+
+                    dayCard.innerHTML = `
+                        <div>
+                            <!-- День / Дата -->
+                            <div class="flex justify-between items-start mb-4">
+                                <div>
+                                    <span class="text-xs font-semibold text-warmTaupe uppercase tracking-wider">День ${dayNum}</span>
+                                    <h3 class="font-serif text-lg text-deepTaupe">${dayName}</h3>
+                                </div>
+                                ${isRetinolDay ? '<span class="text-[10px] bg-amberSoft text-white px-2 py-0.5 rounded-md font-medium">Ретинол</span>' : ''}
+                            </div>
+
+                            <!-- Утренний уход -->
+                            <div class="mb-4 bg-sand/40 p-3 rounded-xl border border-nude/50">
+                                <div class="flex items-center justify-between mb-2">
+                                    <span class="text-[11px] font-bold text-warmTaupe uppercase tracking-wider flex items-center gap-1">
+                                        ☀️ Утро <span class="text-[10px] font-normal opacity-75">(10:00)</span>
+                                    </span>
+                                </div>
+                                <div class="space-y-2">
+                                    ${morningHtml}
+                                </div>
+                            </div>
+
+                            <!-- Вечерний уход -->
+                            <div class="bg-sand/40 p-3 rounded-xl border border-nude/50">
+                                <div class="flex items-center justify-between mb-2">
+                                    <span class="text-[11px] font-bold text-warmTaupe uppercase tracking-wider flex items-center gap-1">
+                                        🌙 Вечер <span class="text-[10px] font-normal opacity-75">(21:00)</span>
+                                    </span>
+                                </div>
+                                <div class="space-y-2">
+                                    ${eveningHtml}
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Прогресс дня -->
+                        <div class="mt-4 pt-3 border-t border-nude/40 flex justify-between items-center text-[11px] text-warmTaupe">
+                            <span>Выполнено</span>
+                            <span id="day-progress-${dayNum}" class="font-semibold text-deepTaupe">0%</span>
+                        </div>
+                    `;
+
+                    daysGrid.appendChild(dayCard);
+                    currentDayNum++;
+                }
+
+                weekSection.appendChild(daysGrid);
+                container.appendChild(weekSection);
+            }
+
+            // Обновить все прогрессы
+            for (let i = 1; i <= 28; i++) {
+                updateDayProgress(i);
+            }
+            updateOverallProgress();
+        }
+
+        // Обновление прогресса конкретного дня
+        function updateDayProgress(dayNum) {
+            const state = loadState();
+            const dayCard = document.getElementById(`day-card-${dayNum}`);
+            if (!dayCard) return;
+
+            const checkboxes = dayCard.querySelectorAll('input[type="checkbox"]');
+            let checkedCount = 0;
+            checkboxes.forEach(cb => {
+                if (state[cb.id]) checkedCount++;
+            });
+
+            const percent = Math.round((checkedCount / checkboxes.length) * 100);
+            const progressEl = document.getElementById(`day-progress-${dayNum}`);
+            if (progressEl) progressEl.innerText = `${percent}%`;
+        }
+
+        // Обновление общего прогресса по всему месяцу
+        function updateOverallProgress() {
+            const state = loadState();
+            const allCheckboxes = document.querySelectorAll('input[type="checkbox"]');
+            if (allCheckboxes.length === 0) return;
+
+            let totalChecked = 0;
+            allCheckboxes.forEach(cb => {
+                if (state[cb.id]) totalChecked++;
+            });
+
+            const percent = Math.round((totalChecked / allCheckboxes.length) * 100);
+            
+            document.getElementById('overall-percentage').innerText = `${percent}%`;
+            
+            const circle = document.getElementById('progress-circle');
+            if (circle) {
+                circle.setAttribute('stroke-dasharray', `${percent}, 100`);
+            }
+        }
+
+        // Фильтр по неделям
+        function filterWeek(weekNum) {
+            document.querySelectorAll('.tab-btn').forEach(btn => {
+                btn.classList.remove('bg-deepTaupe', 'text-white');
+                btn.classList.add('bg-white', 'text-warmTaupe');
+            });
+
+            const activeBtn = document.getElementById(`tab-${weekNum}`);
+            if (activeBtn) {
+                activeBtn.classList.remove('bg-white', 'text-warmTaupe');
+                activeBtn.classList.add('bg-deepTaupe', 'text-white');
+            }
+
+            document.querySelectorAll('.week-section').forEach(section => {
+                if (weekNum === 'all') {
+                    section.classList.remove('hidden');
+                } else {
+                    if (section.classList.contains(`week-${weekNum}`)) {
+                        section.classList.remove('hidden');
+                    } else {
+                        section.classList.add('hidden');
+                    }
+                }
+            });
+        }
+
+        // Полный сброс трекера
+        function resetTracker() {
+            if (confirm('Вы уверены, что хотите сбросить весь отмеченный прогресс?')) {
+                localStorage.removeItem('skincare_tracker_state');
+                renderCalendar();
+            }
+        }
+
+        // Инициализация при загрузке страницы
+        document.addEventListener('DOMContentLoaded', () => {
+            renderCalendar();
+        });
+    </script>
+</body>
+</html>
