@@ -5,72 +5,345 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Трекер ухода за кожей</title>
     <style>
-        body { font-family: system-ui, -apple-system, sans-serif; background-color: #FDFBF7; color: #4A3E3D; padding: 20px; max-width: 1000px; margin: 0 auto; }
-        h1 { text-align: center; font-size: 24px; margin-bottom: 5px; }
-        p.sub { text-align: center; color: #8C7A6B; font-size: 14px; margin-bottom: 25px; }
-        .week-title { font-size: 18px; font-weight: bold; margin: 30px 0 15px 0; padding-bottom: 5px; border-bottom: 2px solid #E8DFD8; }
-        .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 15px; }
-        .card { background: #FFFFFF; border: 1px solid #E8DFD8; border-radius: 12px; padding: 15px; }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; background-color: #FDFBF7; color: #4A3E3D; padding: 20px; max-width: 1000px; margin: 0 auto; }
+        h1 { text-align: center; font-size: 24px; margin-bottom: 6px; }
+        p.subtitle { text-align: center; color: #8C7A6B; font-size: 14px; margin-bottom: 24px; }
+        .week-title { font-size: 18px; font-weight: bold; margin: 30px 0 15px 0; padding-bottom: 6px; border-bottom: 2px solid #E8DFD8; }
+        .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 16px; }
+        .card { background: #FFFFFF; border: 1px solid #E8DFD8; border-radius: 12px; padding: 16px; }
         .card.retinol { border-color: #E0A96D; background-color: #FFFDF9; }
         .card-header { display: flex; justify-content: space-between; font-weight: bold; margin-bottom: 12px; border-bottom: 1px dashed #E8DFD8; padding-bottom: 6px; }
-        .time-header { font-size: 11px; font-weight: bold; color: #8C7A6B; text-transform: uppercase; margin: 10px 0 6px 0; }
-        .task { display: flex; align-items: flex-start; gap: 8px; font-size: 13px; margin-bottom: 8px; cursor: pointer; }
-        .task input { width: 18px; height: 18px; cursor: pointer; margin-top: 1px; flex-shrink: 0; }
+        .time-header { font-size: 11px; font-weight: bold; color: #8C7A6B; text-transform: uppercase; margin: 12px 0 6px 0; }
+        .task { display: flex; align-items: flex-start; gap: 8px; font-size: 13px; margin-bottom: 8px; cursor: pointer; line-height: 1.3; }
+        .task input { width: 18px; height: 18px; cursor: pointer; margin-top: 1px; flex-shrink: 0; accent-color: #A3B18A; }
         .retinol-text { color: #D98A2B; font-weight: bold; }
     </style>
 </head>
 <body>
 
     <h1>Программа ухода за кожей</h1>
-    <p class="sub">4 недели (28 дней) • Старт со среды</p>
+    <p class="subtitle">4 недели (28 дней) • Старт: Среда (10:00 Утро / 21:00 Вечер)</p>
 
     <!-- НЕДЕЛЯ 1 -->
     <div class="week-title">Неделя 1 (Адаптация)</div>
     <div class="grid">
-        <div class="card"><div class="card-header"><span>Среда</span><span>День 1</span></div><div class="time-header">☀️ Утро (10:00)</div><label class="task"><input type="checkbox"> Умывание муссом с алоэ</label><label class="task"><input type="checkbox"> Крем NMF-Protection</label><label class="task"><input type="checkbox"> Солнцезащитный крем (SPF)</label><div class="time-header">🌙 Вечер (21:00)</div><label class="task"><input type="checkbox"> Умывание муссом с алоэ</label><label class="task"><input type="checkbox"> Крем NMF-Protection</label></div>
-        <div class="card"><div class="card-header"><span>Четверг</span><span>День 2</span></div><div class="time-header">☀️ Утро (10:00)</div><label class="task"><input type="checkbox"> Умывание муссом с алоэ</label><label class="task"><input type="checkbox"> Крем NMF-Protection</label><label class="task"><input type="checkbox"> Солнцезащитный крем (SPF)</label><div class="time-header">🌙 Вечер (21:00)</div><label class="task"><input type="checkbox"> Умывание муссом с алоэ</label><label class="task"><input type="checkbox"> Крем NMF-Protection</label></div>
-        <div class="card"><div class="card-header"><span>Пятница</span><span>День 3</span></div><div class="time-header">☀️ Утро (10:00)</div><label class="task"><input type="checkbox"> Умывание муссом с алоэ</label><label class="task"><input type="checkbox"> Крем NMF-Protection</label><label class="task"><input type="checkbox"> Солнцезащитный крем (SPF)</label><div class="time-header">🌙 Вечер (21:00)</div><label class="task"><input type="checkbox"> Умывание муссом с алоэ</label><label class="task"><input type="checkbox"> Крем NMF-Protection</label></div>
-        <div class="card"><div class="card-header"><span>Суббота</span><span>День 4</span></div><div class="time-header">☀️ Утро (10:00)</div><label class="task"><input type="checkbox"> Умывание муссом с алоэ</label><label class="task"><input type="checkbox"> Крем NMF-Protection</label><label class="task"><input type="checkbox"> Солнцезащитный крем (SPF)</label><div class="time-header">🌙 Вечер (21:00)</div><label class="task"><input type="checkbox"> Умывание муссом с алоэ</label><label class="task"><input type="checkbox"> Крем NMF-Protection</label></div>
-        <div class="card"><div class="card-header"><span>Воскресенье</span><span>День 5</span></div><div class="time-header">☀️ Утро (10:00)</div><label class="task"><input type="checkbox"> Умывание муссом с алоэ</label><label class="task"><input type="checkbox"> Крем NMF-Protection</label><label class="task"><input type="checkbox"> Солнцезащитный крем (SPF)</label><div class="time-header">🌙 Вечер (21:00)</div><label class="task"><input type="checkbox"> Умывание муссом с алоэ</label><label class="task"><input type="checkbox"> Крем NMF-Protection</label></div>
-        <div class="card"><div class="card-header"><span>Понедельник</span><span>День 6</span></div><div class="time-header">☀️ Утро (10:00)</div><label class="task"><input type="checkbox"> Умывание муссом с алоэ</label><label class="task"><input type="checkbox"> Крем NMF-Protection</label><label class="task"><input type="checkbox"> Солнцезащитный крем (SPF)</label><div class="time-header">🌙 Вечер (21:00)</div><label class="task"><input type="checkbox"> Умывание муссом с алоэ</label><label class="task"><input type="checkbox"> Крем NMF-Protection</label></div>
-        <div class="card"><div class="card-header"><span>Вторник</span><span>День 7</span></div><div class="time-header">☀️ Утро (10:00)</div><label class="task"><input type="checkbox"> Умывание муссом с алоэ</label><label class="task"><input type="checkbox"> Крем NMF-Protection</label><label class="task"><input type="checkbox"> Солнцезащитный крем (SPF)</label><div class="time-header">🌙 Вечер (21:00)</div><label class="task"><input type="checkbox"> Умывание муссом с алоэ</label><label class="task"><input type="checkbox"> Крем NMF-Protection</label></div>
+        <div class="card">
+            <div class="card-header"><span>Среда</span><span>День 1</span></div>
+            <div class="time-header">☀️ Утро (10:00)</div>
+            <label class="task"><input type="checkbox"> Умывание муссом с алоэ</label>
+            <label class="task"><input type="checkbox"> Крем NMF-Protection</label>
+            <label class="task"><input type="checkbox"> Солнцезащитный крем (SPF)</label>
+            <div class="time-header">🌙 Вечер (21:00)</div>
+            <label class="task"><input type="checkbox"> Умывание муссом с алоэ</label>
+            <label class="task"><input type="checkbox"> Крем NMF-Protection</label>
+        </div>
+        <div class="card">
+            <div class="card-header"><span>Четверг</span><span>День 2</span></div>
+            <div class="time-header">☀️ Утро (10:00)</div>
+            <label class="task"><input type="checkbox"> Умывание муссом с алоэ</label>
+            <label class="task"><input type="checkbox"> Крем NMF-Protection</label>
+            <label class="task"><input type="checkbox"> Солнцезащитный крем (SPF)</label>
+            <div class="time-header">🌙 Вечер (21:00)</div>
+            <label class="task"><input type="checkbox"> Умывание муссом с алоэ</label>
+            <label class="task"><input type="checkbox"> Крем NMF-Protection</label>
+        </div>
+        <div class="card">
+            <div class="card-header"><span>Пятница</span><span>День 3</span></div>
+            <div class="time-header">☀️ Утро (10:00)</div>
+            <label class="task"><input type="checkbox"> Умывание муссом с алоэ</label>
+            <label class="task"><input type="checkbox"> Крем NMF-Protection</label>
+            <label class="task"><input type="checkbox"> Солнцезащитный крем (SPF)</label>
+            <div class="time-header">🌙 Вечер (21:00)</div>
+            <label class="task"><input type="checkbox"> Умывание муссом с алоэ</label>
+            <label class="task"><input type="checkbox"> Крем NMF-Protection</label>
+        </div>
+        <div class="card">
+            <div class="card-header"><span>Суббота</span><span>День 4</span></div>
+            <div class="time-header">☀️ Утро (10:00)</div>
+            <label class="task"><input type="checkbox"> Умывание муссом с алоэ</label>
+            <label class="task"><input type="checkbox"> Крем NMF-Protection</label>
+            <label class="task"><input type="checkbox"> Солнцезащитный крем (SPF)</label>
+            <div class="time-header">🌙 Вечер (21:00)</div>
+            <label class="task"><input type="checkbox"> Умывание муссом с алоэ</label>
+            <label class="task"><input type="checkbox"> Крем NMF-Protection</label>
+        </div>
+        <div class="card">
+            <div class="card-header"><span>Воскресенье</span><span>День 5</span></div>
+            <div class="time-header">☀️ Утро (10:00)</div>
+            <label class="task"><input type="checkbox"> Умывание муссом с алоэ</label>
+            <label class="task"><input type="checkbox"> Крем NMF-Protection</label>
+            <label class="task"><input type="checkbox"> Солнцезащитный крем (SPF)</label>
+            <div class="time-header">🌙 Вечер (21:00)</div>
+            <label class="task"><input type="checkbox"> Умывание муссом с алоэ</label>
+            <label class="task"><input type="checkbox"> Крем NMF-Protection</label>
+        </div>
+        <div class="card">
+            <div class="card-header"><span>Понедельник</span><span>День 6</span></div>
+            <div class="time-header">☀️ Утро (10:00)</div>
+            <label class="task"><input type="checkbox"> Умывание муссом с алоэ</label>
+            <label class="task"><input type="checkbox"> Крем NMF-Protection</label>
+            <label class="task"><input type="checkbox"> Солнцезащитный крем (SPF)</label>
+            <div class="time-header">🌙 Вечер (21:00)</div>
+            <label class="task"><input type="checkbox"> Умывание муссом с алоэ</label>
+            <label class="task"><input type="checkbox"> Крем NMF-Protection</label>
+        </div>
+        <div class="card">
+            <div class="card-header"><span>Вторник</span><span>День 7</span></div>
+            <div class="time-header">☀️ Утро (10:00)</div>
+            <label class="task"><input type="checkbox"> Умывание муссом с алоэ</label>
+            <label class="task"><input type="checkbox"> Крем NMF-Protection</label>
+            <label class="task"><input type="checkbox"> Солнцезащитный крем (SPF)</label>
+            <div class="time-header">🌙 Вечер (21:00)</div>
+            <label class="task"><input type="checkbox"> Умывание муссом с алоэ</label>
+            <label class="task"><input type="checkbox"> Крем NMF-Protection</label>
+        </div>
     </div>
 
     <!-- НЕДЕЛЯ 2 -->
     <div class="week-title">Неделя 2 (Базовый уход)</div>
     <div class="grid">
-        <div class="card"><div class="card-header"><span>Среда</span><span>День 8</span></div><div class="time-header">☀️ Утро (10:00)</div><label class="task"><input type="checkbox"> Умывание муссом с алоэ</label><label class="task"><input type="checkbox"> Крем NMF-Protection</label><label class="task"><input type="checkbox"> Солнцезащитный крем (SPF)</label><div class="time-header">🌙 Вечер (21:00)</div><label class="task"><input type="checkbox"> Умывание муссом с алоэ</label><label class="task"><input type="checkbox"> Крем NMF-Protection</label></div>
-        <div class="card"><div class="card-header"><span>Четверг</span><span>День 9</span></div><div class="time-header">☀️ Утро (10:00)</div><label class="task"><input type="checkbox"> Умывание муссом с алоэ</label><label class="task"><input type="checkbox"> Крем NMF-Protection</label><label class="task"><input type="checkbox"> Солнцезащитный крем (SPF)</label><div class="time-header">🌙 Вечер (21:00)</div><label class="task"><input type="checkbox"> Умывание муссом с алоэ</label><label class="task"><input type="checkbox"> Крем NMF-Protection</label></div>
-        <div class="card"><div class="card-header"><span>Пятница</span><span>День 10</span></div><div class="time-header">☀️ Утро (10:00)</div><label class="task"><input type="checkbox"> Умывание муссом с алоэ</label><label class="task"><input type="checkbox"> Крем NMF-Protection</label><label class="task"><input type="checkbox"> Солнцезащитный крем (SPF)</label><div class="time-header">🌙 Вечер (21:00)</div><label class="task"><input type="checkbox"> Умывание муссом с алоэ</label><label class="task"><input type="checkbox"> Крем NMF-Protection</label></div>
-        <div class="card"><div class="card-header"><span>Суббота</span><span>День 11</span></div><div class="time-header">☀️ Утро (10:00)</div><label class="task"><input type="checkbox"> Умывание муссом с алоэ</label><label class="task"><input type="checkbox"> Крем NMF-Protection</label><label class="task"><input type="checkbox"> Солнцезащитный крем (SPF)</label><div class="time-header">🌙 Вечер (21:00)</div><label class="task"><input type="checkbox"> Умывание муссом с алоэ</label><label class="task"><input type="checkbox"> Крем NMF-Protection</label></div>
-        <div class="card"><div class="card-header"><span>Воскресенье</span><span>День 12</span></div><div class="time-header">☀️ Утро (10:00)</div><label class="task"><input type="checkbox"> Умывание муссом с алоэ</label><label class="task"><input type="checkbox"> Крем NMF-Protection</label><label class="task"><input type="checkbox"> Солнцезащитный крем (SPF)</label><div class="time-header">🌙 Вечер (21:00)</div><label class="task"><input type="checkbox"> Умывание муссом с алоэ</label><label class="task"><input type="checkbox"> Крем NMF-Protection</label></div>
-        <div class="card"><div class="card-header"><span>Понедельник</span><span>День 13</span></div><div class="time-header">☀️ Утро (10:00)</div><label class="task"><input type="checkbox"> Умывание муссом с алоэ</label><label class="task"><input type="checkbox"> Крем NMF-Protection</label><label class="task"><input type="checkbox"> Солнцезащитный крем (SPF)</label><div class="time-header">🌙 Вечер (21:00)</div><label class="task"><input type="checkbox"> Умывание муссом с алоэ</label><label class="task"><input type="checkbox"> Крем NMF-Protection</label></div>
-        <div class="card"><div class="card-header"><span>Вторник</span><span>День 14</span></div><div class="time-header">☀️ Утро (10:00)</div><label class="task"><input type="checkbox"> Умывание муссом с алоэ</label><label class="task"><input type="checkbox"> Крем NMF-Protection</label><label class="task"><input type="checkbox"> Солнцезащитный крем (SPF)</label><div class="time-header">🌙 Вечер (21:00)</div><label class="task"><input type="checkbox"> Умывание муссом с алоэ</label><label class="task"><input type="checkbox"> Крем NMF-Protection</label></div>
+        <div class="card">
+            <div class="card-header"><span>Среда</span><span>День 8</span></div>
+            <div class="time-header">☀️ Утро (10:00)</div>
+            <label class="task"><input type="checkbox"> Умывание муссом с алоэ</label>
+            <label class="task"><input type="checkbox"> Крем NMF-Protection</label>
+            <label class="task"><input type="checkbox"> Солнцезащитный крем (SPF)</label>
+            <div class="time-header">🌙 Вечер (21:00)</div>
+            <label class="task"><input type="checkbox"> Умывание муссом с алоэ</label>
+            <label class="task"><input type="checkbox"> Крем NMF-Protection</label>
+        </div>
+        <div class="card">
+            <div class="card-header"><span>Четверг</span><span>День 9</span></div>
+            <div class="time-header">☀️ Утро (10:00)</div>
+            <label class="task"><input type="checkbox"> Умывание муссом с алоэ</label>
+            <label class="task"><input type="checkbox"> Крем NMF-Protection</label>
+            <label class="task"><input type="checkbox"> Солнцезащитный крем (SPF)</label>
+            <div class="time-header">🌙 Вечер (21:00)</div>
+            <label class="task"><input type="checkbox"> Умывание муссом с алоэ</label>
+            <label class="task"><input type="checkbox"> Крем NMF-Protection</label>
+        </div>
+        <div class="card">
+            <div class="card-header"><span>Пятница</span><span>День 10</span></div>
+            <div class="time-header">☀️ Утро (10:00)</div>
+            <label class="task"><input type="checkbox"> Умывание муссом с алоэ</label>
+            <label class="task"><input type="checkbox"> Крем NMF-Protection</label>
+            <label class="task"><input type="checkbox"> Солнцезащитный крем (SPF)</label>
+            <div class="time-header">🌙 Вечер (21:00)</div>
+            <label class="task"><input type="checkbox"> Умывание муссом с алоэ</label>
+            <label class="task"><input type="checkbox"> Крем NMF-Protection</label>
+        </div>
+        <div class="card">
+            <div class="card-header"><span>Суббота</span><span>День 11</span></div>
+            <div class="time-header">☀️ Утро (10:00)</div>
+            <label class="task"><input type="checkbox"> Умывание муссом с алоэ</label>
+            <label class="task"><input type="checkbox"> Крем NMF-Protection</label>
+            <label class="task"><input type="checkbox"> Солнцезащитный крем (SPF)</label>
+            <div class="time-header">🌙 Вечер (21:00)</div>
+            <label class="task"><input type="checkbox"> Умывание муссом с алоэ</label>
+            <label class="task"><input type="checkbox"> Крем NMF-Protection</label>
+        </div>
+        <div class="card">
+            <div class="card-header"><span>Воскресенье</span><span>День 12</span></div>
+            <div class="time-header">☀️ Утро (10:00)</div>
+            <label class="task"><input type="checkbox"> Умывание муссом с алоэ</label>
+            <label class="task"><input type="checkbox"> Крем NMF-Protection</label>
+            <label class="task"><input type="checkbox"> Солнцезащитный крем (SPF)</label>
+            <div class="time-header">🌙 Вечер (21:00)</div>
+            <label class="task"><input type="checkbox"> Умывание муссом с алоэ</label>
+            <label class="task"><input type="checkbox"> Крем NMF-Protection</label>
+        </div>
+        <div class="card">
+            <div class="card-header"><span>Понедельник</span><span>День 13</span></div>
+            <div class="time-header">☀️ Утро (10:00)</div>
+            <label class="task"><input type="checkbox"> Умывание муссом с алоэ</label>
+            <label class="task"><input type="checkbox"> Крем NMF-Protection</label>
+            <label class="task"><input type="checkbox"> Солнцезащитный крем (SPF)</label>
+            <div class="time-header">🌙 Вечер (21:00)</div>
+            <label class="task"><input type="checkbox"> Умывание муссом с алоэ</label>
+            <label class="task"><input type="checkbox"> Крем NMF-Protection</label>
+        </div>
+        <div class="card">
+            <div class="card-header"><span>Вторник</span><span>День 14</span></div>
+            <div class="time-header">☀️ Утро (10:00)</div>
+            <label class="task"><input type="checkbox"> Умывание муссом с алоэ</label>
+            <label class="task"><input type="checkbox"> Крем NMF-Protection</label>
+            <label class="task"><input type="checkbox"> Солнцезащитный крем (SPF)</label>
+            <div class="time-header">🌙 Вечер (21:00)</div>
+            <label class="task"><input type="checkbox"> Умывание муссом с алоэ</label>
+            <label class="task"><input type="checkbox"> Крем NMF-Protection</label>
+        </div>
     </div>
 
     <!-- НЕДЕЛЯ 3 -->
     <div class="week-title">Неделя 3 (Ввод ретинола: Среда, Суббота)</div>
     <div class="grid">
-        <div class="card retinol"><div class="card-header"><span>Среда</span><span>День 15</span></div><div class="time-header">☀️ Утро (10:00)</div><label class="task"><input type="checkbox"> Умывание муссом с алоэ</label><label class="task"><input type="checkbox"> Крем NMF-Protection</label><label class="task"><input type="checkbox"> Солнцезащитный крем (SPF)</label><div class="time-header">🌙 Вечер (21:00)</div><label class="task"><input type="checkbox"> Умывание муссом с алоэ</label><label class="task"><input type="checkbox"> <span class="retinol-text">Сухая кожа (10 мин) + Retiderm 0.25</span></label><label class="task"><input type="checkbox"> Пауза 20 мин + крем NMF-Protection</label></div>
-        <div class="card"><div class="card-header"><span>Четверг</span><span>День 16</span></div><div class="time-header">☀️ Утро (10:00)</div><label class="task"><input type="checkbox"> Умывание муссом с алоэ</label><label class="task"><input type="checkbox"> Крем NMF-Protection</label><label class="task"><input type="checkbox"> Солнцезащитный крем (SPF)</label><div class="time-header">🌙 Вечер (21:00)</div><label class="task"><input type="checkbox"> Умывание муссом с алоэ</label><label class="task"><input type="checkbox"> Крем NMF-Protection</label></div>
-        <div class="card"><div class="card-header"><span>Пятница</span><span>День 17</span></div><div class="time-header">☀️ Утро (10:00)</div><label class="task"><input type="checkbox"> Умывание муссом с алоэ</label><label class="task"><input type="checkbox"> Крем NMF-Protection</label><label class="task"><input type="checkbox"> Солнцезащитный крем (SPF)</label><div class="time-header">🌙 Вечер (21:00)</div><label class="task"><input type="checkbox"> Умывание муссом с алоэ</label><label class="task"><input type="checkbox"> Крем NMF-Protection</label></div>
-        <div class="card retinol"><div class="card-header"><span>Суббота</span><span>День 18</span></div><div class="time-header">☀️ Утро (10:00)</div><label class="task"><input type="checkbox"> Умывание муссом с алоэ</label><label class="task"><input type="checkbox"> Крем NMF-Protection</label><label class="task"><input type="checkbox"> Солнцезащитный крем (SPF)</label><div class="time-header">🌙 Вечер (21:00)</div><label class="task"><input type="checkbox"> Умывание муссом с алоэ</label><label class="task"><input type="checkbox"> <span class="retinol-text">Сухая кожа (10 мин) + Retiderm 0.25</span></label><label class="task"><input type="checkbox"> Пауза 20 мин + крем NMF-Protection</label></div>
-        <div class="card"><div class="card-header"><span>Воскресенье</span><span>День 19</span></div><div class="time-header">☀️ Утро (10:00)</div><label class="task"><input type="checkbox"> Умывание муссом с алоэ</label><label class="task"><input type="checkbox"> Крем NMF-Protection</label><label class="task"><input type="checkbox"> Солнцезащитный крем (SPF)</label><div class="time-header">🌙 Вечер (21:00)</div><label class="task"><input type="checkbox"> Умывание муссом с алоэ</label><label class="task"><input type="checkbox"> Крем NMF-Protection</label></div>
-        <div class="card"><div class="card-header"><span>Понедельник</span><span>День 20</span></div><div class="time-header">☀️ Утро (10:00)</div><label class="task"><input type="checkbox"> Умывание муссом с алоэ</label><label class="task"><input type="checkbox"> Крем NMF-Protection</label><label class="task"><input type="checkbox"> Солнцезащитный крем (SPF)</label><div class="time-header">🌙 Вечер (21:00)</div><label class="task"><input type="checkbox"> Умывание муссом с алоэ</label><label class="task"><input type="checkbox"> Крем NMF-Protection</label></div>
-        <div class="card"><div class="card-header"><span>Вторник</span><span>День 21</span></div><div class="time-header">☀️ Утро (10:00)</div><label class="task"><input type="checkbox"> Умывание муссом с алоэ</label><label class="task"><input type="checkbox"> Крем NMF-Protection</label><label class="task"><input type="checkbox"> Солнцезащитный крем (SPF)</label><div class="time-header">🌙 Вечер (21:00)</div><label class="task"><input type="checkbox"> Умывание муссом с алоэ</label><label class="task"><input type="checkbox"> Крем NMF-Protection</label></div>
+        <div class="card retinol">
+            <div class="card-header"><span>Среда</span><span>День 15</span></div>
+            <div class="time-header">☀️ Утро (10:00)</div>
+            <label class="task"><input type="checkbox"> Умывание муссом с алоэ</label>
+            <label class="task"><input type="checkbox"> Крем NMF-Protection</label>
+            <label class="task"><input type="checkbox"> Солнцезащитный крем (SPF)</label>
+            <div class="time-header">🌙 Вечер (21:00)</div>
+            <label class="task"><input type="checkbox"> Умывание муссом с алоэ</label>
+            <label class="task"><input type="checkbox"> <span class="retinol-text">Сухая кожа (10 мин) + Retiderm 0.25</span></label>
+            <label class="task"><input type="checkbox"> Пауза 20 мин + крем NMF-Protection</label>
+        </div>
+        <div class="card">
+            <div class="card-header"><span>Четверг</span><span>День 16</span></div>
+            <div class="time-header">☀️ Утро (10:00)</div>
+            <label class="task"><input type="checkbox"> Умывание муссом с алоэ</label>
+            <label class="task"><input type="checkbox"> Крем NMF-Protection</label>
+            <label class="task"><input type="checkbox"> Солнцезащитный крем (SPF)</label>
+            <div class="time-header">🌙 Вечер (21:00)</div>
+            <label class="task"><input type="checkbox"> Умывание муссом с алоэ</label>
+            <label class="task"><input type="checkbox"> Крем NMF-Protection</label>
+        </div>
+        <div class="card">
+            <div class="card-header"><span>Пятница</span><span>День 17</span></div>
+            <div class="time-header">☀️ Утро (10:00)</div>
+            <label class="task"><input type="checkbox"> Умывание муссом с алоэ</label>
+            <label class="task"><input type="checkbox"> Крем NMF-Protection</label>
+            <label class="task"><input type="checkbox"> Солнцезащитный крем (SPF)</label>
+            <div class="time-header">🌙 Вечер (21:00)</div>
+            <label class="task"><input type="checkbox"> Умывание муссом с алоэ</label>
+            <label class="task"><input type="checkbox"> Крем NMF-Protection</label>
+        </div>
+        <div class="card retinol">
+            <div class="card-header"><span>Суббота</span><span>День 18</span></div>
+            <div class="time-header">☀️ Утро (10:00)</div>
+            <label class="task"><input type="checkbox"> Умывание муссом с алоэ</label>
+            <label class="task"><input type="checkbox"> Крем NMF-Protection</label>
+            <label class="task"><input type="checkbox"> Солнцезащитный крем (SPF)</label>
+            <div class="time-header">🌙 Вечер (21:00)</div>
+            <label class="task"><input type="checkbox"> Умывание муссом с алоэ</label>
+            <label class="task"><input type="checkbox"> <span class="retinol-text">Сухая кожа (10 мин) + Retiderm 0.25</span></label>
+            <label class="task"><input type="checkbox"> Пауза 20 мин + крем NMF-Protection</label>
+        </div>
+        <div class="card">
+            <div class="card-header"><span>Воскресенье</span><span>День 19</span></div>
+            <div class="time-header">☀️ Утро (10:00)</div>
+            <label class="task"><input type="checkbox"> Умывание муссом с алоэ</label>
+            <label class="task"><input type="checkbox"> Крем NMF-Protection</label>
+            <label class="task"><input type="checkbox"> Солнцезащитный крем (SPF)</label>
+            <div class="time-header">🌙 Вечер (21:00)</div>
+            <label class="task"><input type="checkbox"> Умывание муссом с алоэ</label>
+            <label class="task"><input type="checkbox"> Крем NMF-Protection</label>
+        </div>
+        <div class="card">
+            <div class="card-header"><span>Понедельник</span><span>День 20</span></div>
+            <div class="time-header">☀️ Утро (10:00)</div>
+            <label class="task"><input type="checkbox"> Умывание муссом с алоэ</label>
+            <label class="task"><input type="checkbox"> Крем NMF-Protection</label>
+            <label class="task"><input type="checkbox"> Солнцезащитный крем (SPF)</label>
+            <div class="time-header">🌙 Вечер (21:00)</div>
+            <label class="task"><input type="checkbox"> Умывание муссом с алоэ</label>
+            <label class="task"><input type="checkbox"> Крем NMF-Protection</label>
+        </div>
+        <div class="card">
+            <div class="card-header"><span>Вторник</span><span>День 21</span></div>
+            <div class="time-header">☀️ Утро (10:00)</div>
+            <label class="task"><input type="checkbox"> Умывание муссом с алоэ</label>
+            <label class="task"><input type="checkbox"> Крем NMF-Protection</label>
+            <label class="task"><input type="checkbox"> Солнцезащитный крем (SPF)</label>
+            <div class="time-header">🌙 Вечер (21:00)</div>
+            <label class="task"><input type="checkbox"> Умывание муссом с алоэ</label>
+            <label class="task"><input type="checkbox"> Крем NMF-Protection</label>
+        </div>
     </div>
 
     <!-- НЕДЕЛЯ 4 -->
     <div class="week-title">Неделя 4 (Ретинол: Среда, Пятница, Воскресенье)</div>
     <div class="grid">
-        <div class="card retinol"><div class="card-header"><span>Среда</span><span>День 22</span></div><div class="time-header">☀️ Утро (10:00)</div><label class="task"><input type="checkbox"> Умывание муссом с алоэ</label><label class="task"><input type="checkbox"> Крем NMF-Protection</label><label class="task"><input type="checkbox"> Солнцезащитный крем (SPF)</label><div class="time-header">🌙 Вечер (21:00)</div><label class="task"><input type="checkbox"> Умывание муссом с алоэ</label><label class="task"><input type="checkbox"> <span class="retinol-text">Сухая кожа (10 мин) + Retiderm 0.25</span></label><label class="task"><input type="checkbox"> Пауза 20 мин + крем NMF-Protection</label></div>
-        <div class="card"><div class="card-header"><span>Четверг</span><span>День 23</span></div><div class="time-header">☀️ Утро (10:00)</div><label class="task"><input type="checkbox"> Умывание муссом с алоэ</label><label class="task"><input type="checkbox"> Крем NMF-Protection</label><label class="task"><input type="checkbox"> Солнцезащитный крем (SPF)</label><div class="time-header">🌙 Вечер (21:00)</div><label class="task"><input type="checkbox"> Умывание муссом с алоэ</label><label class="task"><input type="checkbox"> Крем NMF-Protection</label></div>
-        <div class="card retinol"><div class="card-header"><span>Пятница</span><span>День 24</span></div><div class="time-header">☀️ Утро (10:00)</div><label class="task"><input type="checkbox"> Умывание муссом с алоэ</label><label class="task"><input type="checkbox"> Крем NMF-Protection</label><label class="task"><input type="checkbox"> Солнцезащитный крем (SPF)</label><div class="time-header">🌙 Вечер (21:00)</div><label class="task"><input type="checkbox"> Умывание муссом с алоэ</label><label class="task"><input type="checkbox"> <span class="retinol-text">Сухая кожа (10 мин) + Retiderm 0.25</span></label><label class="task"><input type="checkbox"> Пауза 20 мин + крем NMF-Protection</label></div>
-        <div class="card"><div class="card-header"><span>Суббота</span><span>День 25</span></div><div class="time-header">☀️ Утро (10:00)</div><label class="task"><input type="checkbox"> Умывание муссом с алоэ</label><label class="task"><input type="checkbox"> Крем NMF-Protection</label><label class="task"><input type="checkbox"> Солнцезащитный крем (SPF)</label><div class="time-header">🌙 Вечер (21:00)</div><label class="task"><input type="checkbox"> Умывание муссом с алоэ</label><label class="task"><input type="checkbox"> Крем NMF-Protection</label></div>
-        <div class="card retinol"><div class="card-header"><span>Воскресенье</span><span>День 26</span></div><div class="time-header">☀️ Утро (10:00)</div><label class="task"><input type="checkbox"> Умывание муссом с алоэ</label><label class="task"><input type="checkbox"> Крем NMF-Protection</label><label class="task"><input type="checkbox"> Солнцезащитный крем (SPF)</label><div class="time-header">🌙 Вечер (21:00)</div><label class="task"><input type="checkbox"> Умывание муссом с алоэ</label><label class="task"><input type="checkbox"> <span class="retinol-text">Сухая кожа (10 мин) + Retiderm 0.25</span></label><label class="task"><input type="checkbox"> Пауза 20 мин + крем NMF-Protection</label></div>
-        <div class="card"><div class="card-header"><span>Понедельник</span><span>День 27</span></div><div class="time-header">☀️ Утро (10:00)</div><label class="task"><input type="checkbox"> Умывание муссом с алоэ</label><label class="task"><input type="checkbox"> Крем NMF-Protection</label><label class="task"><input type="checkbox"> Солнцезащитный крем (SPF)</label><div class="time-header">🌙 Вечер (21:00)</div><label class="task"><input type="checkbox"> Умывание муссом с алоэ</label><label class="task"><input type="checkbox"> Крем NMF-Protection</label></div>
-        <div class="card"><div class="card-header"><span>Вторник</span><span>День 28</span></div><div class="time-header">☀️ Утро (10:00)</div><label class="task"><input type="checkbox"> Умывание муссом с алоэ</label><label class="task"><input type="checkbox"> Крем NMF-Protection</label><label class="task"><input type="checkbox"> Солнцезащитный крем (SPF)</label><div class="time-header">🌙 Вечер (21:00)</div><label class="task"><input type="checkbox"> Умывание муссом с алоэ</label><label class="task"><input type="checkbox"> Крем NMF-Protection</label></div>
+        <div class="card retinol">
+            <div class="card-header"><span>Среда</span><span>День 22</span></div>
+            <div class="time-header">☀️ Утро (10:00)</div>
+            <label class="task"><input type="checkbox"> Умывание муссом с алоэ</label>
+            <label class="task"><input type="checkbox"> Крем NMF-Protection</label>
+            <label class="task"><input type="checkbox"> Солнцезащитный крем (SPF)</label>
+            <div class="time-header">🌙 Вечер (21:00)</div>
+            <label class="task"><input type="checkbox"> Умывание муссом с алоэ</label>
+            <label class="task"><input type="checkbox"> <span class="retinol-text">Сухая кожа (10 мин) + Retiderm 0.25</span></label>
+            <label class="task"><input type="checkbox"> Пауза 20 мин + крем NMF-Protection</label>
+        </div>
+        <div class="card">
+            <div class="card-header"><span>Четверг</span><span>День 23</span></div>
+            <div class="time-header">☀️ Утро (10:00)</div>
+            <label class="task"><input type="checkbox"> Умывание муссом с алоэ</label>
+            <label class="task"><input type="checkbox"> Крем NMF-Protection</label>
+            <label class="task"><input type="checkbox"> Солнцезащитный крем (SPF)</label>
+            <div class="time-header">🌙 Вечер (21:00)</div>
+            <label class="task"><input type="checkbox"> Умывание муссом с алоэ</label>
+            <label class="task"><input type="checkbox"> Крем NMF-Protection</label>
+        </div>
+        <div class="card retinol">
+            <div class="card-header"><span>Пятница</span><span>День 24</span></div>
+            <div class="time-header">☀️ Утро (10:00)</div>
+            <label class="task"><input type="checkbox"> Умывание муссом с алоэ</label>
+            <label class="task"><input type="checkbox"> Крем NMF-Protection</label>
+            <label class="task"><input type="checkbox"> Солнцезащитный крем (SPF)</label>
+            <div class="time-header">🌙 Вечер (21:00)</div>
+            <label class="task"><input type="checkbox"> Умывание муссом с алоэ</label>
+            <label class="task"><input type="checkbox"> <span class="retinol-text">Сухая кожа (10 мин) + Retiderm 0.25</span></label>
+            <label class="task"><input type="checkbox"> Пауза 20 мин + крем NMF-Protection</label>
+        </div>
+        <div class="card">
+            <div class="card-header"><span>Суббота</span><span>День 25</span></div>
+            <div class="time-header">☀️ Утро (10:00)</div>
+            <label class="task"><input type="checkbox"> Умывание муссом с алоэ</label>
+            <label class="task"><input type="checkbox"> Крем NMF-Protection</label>
+            <label class="task"><input type="checkbox"> Солнцезащитный крем (SPF)</label>
+            <div class="time-header">🌙 Вечер (21:00)</div>
+            <label class="task"><input type="checkbox"> Умывание муссом с алоэ</label>
+            <label class="task"><input type="checkbox"> Крем NMF-Protection</label>
+        </div>
+        <div class="card retinol">
+            <div class="card-header"><span>Воскресенье</span><span>День 26</span></div>
+            <div class="time-header">☀️ Утро (10:00)</div>
+            <label class="task"><input type="checkbox"> Умывание муссом с алоэ</label>
+            <label class="task"><input type="checkbox"> Крем NMF-Protection</label>
+            <label class="task"><input type="checkbox"> Солнцезащитный крем (SPF)</label>
+            <div class="time-header">🌙 Вечер (21:00)</div>
+            <label class="task"><input type="checkbox"> Умывание муссом с алоэ</label>
+            <label class="task"><input type="checkbox"> <span class="retinol-text">Сухая кожа (10 мин) + Retiderm 0.25</span></label>
+            <label class="task"><input type="checkbox"> Пауза 20 мин + крем NMF-Protection</label>
+        </div>
+        <div class="card">
+            <div class="card-header"><span>Понедельник</span><span>День 27</span></div>
+            <div class="time-header">☀️ Утро (10:00)</div>
+            <label class="task"><input type="checkbox"> Умывание муссом с алоэ</label>
+            <label class="task"><input type="checkbox"> Крем NMF-Protection</label>
+            <label class="task"><input type="checkbox"> Солнцезащитный крем (SPF)</label>
+            <div class="time-header">🌙 Вечер (21:00)</div>
+            <label class="task"><input type="checkbox"> Умывание муссом с алоэ</label>
+            <label class="task"><input type="checkbox"> Крем NMF-Protection</label>
+        </div>
+        <div class="card">
+            <div class="card-header"><span>Вторник</span><span>День 28</span></div>
+            <div class="time-header">☀️ Утро (10:00)</div>
+            <label class="task"><input type="checkbox"> Умывание муссом с алоэ</label>
+            <label class="task"><input type="checkbox"> Крем NMF-Protection</label>
+            <label class="task"><input type="checkbox"> Солнцезащитный крем (SPF)</label>
+            <div class="time-header">🌙 Вечер (21:00)</div>
+            <label class="task"><input type="checkbox"> Умывание муссом с алоэ</label>
+            <label class="task"><input type="checkbox"> Крем NMF-Protection</label>
+        </div>
     </div>
 
+    <script>
+        // Добавляем автоматическое сохранение всех чекбоксов
+        document.addEventListener('DOMContentLoaded', function() {
+            var checkboxes = document.querySelectorAll('input[type="checkbox"]');
+            checkboxes.forEach(function(cb, index) {
+                var key = 'skincare_check_' + index;
+                if (localStorage.getItem(key) === 'true') {
+                    cb.checked = true;
+                }
+                cb.addEventListener('change', function() {
+                    localStorage.setItem(key, cb.checked);
+                });
+            });
+        });
+    </script>
 </body>
 </html>
