@@ -3,385 +3,405 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Трекер Ухода за Кожей | 4 Недели</title>
-    <!-- Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Marcellus&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        cream: '#FDFBF7',
-                        sand: '#F4EFEA',
-                        nude: '#E8DFD8',
-                        warmTaupe: '#8C7A6B',
-                        deepTaupe: '#4A3E3D',
-                        sage: '#A3B18A',
-                        sageLight: '#E8EDE0',
-                        amberSoft: '#E0A96D',
-                        amberLight: '#FDF3E7',
-                        roseSoft: '#D9A0A0',
-                    },
-                    fontFamily: {
-                        serif: ['Marcellus', 'serif'],
-                        sans: ['Plus Jakarta Sans', 'sans-serif'],
-                    }
-                }
-            }
-        }
-    </script>
+    <title>Трекер Ухода за Кожей</title>
     <style>
+        :root {
+            --bg-color: #FDFBF7;
+            --card-bg: #FFFFFF;
+            --accent-sand: #F4EFEA;
+            --border-color: #E8DFD8;
+            --text-main: #4A3E3D;
+            --text-muted: #8C7A6B;
+            --green-accent: #A3B18A;
+            --amber-accent: #E0A96D;
+            --amber-bg: #FDF3E7;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        }
+
         body {
-            background-color: #FDFBF7;
-            color: #4A3E3D;
-            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            padding: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
         }
-        .custom-checkbox {
-            appearance: none;
-            width: 1.25rem;
-            height: 1.25rem;
-            border: 2px solid #C5B8AC;
-            border-radius: 0.375rem;
-            outline: none;
-            transition: all 0.2s ease;
+
+        header {
+            text-align: center;
+            margin-bottom: 24px;
+            padding-bottom: 16px;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        h1 {
+            font-size: 24px;
+            font-weight: 600;
+            margin-bottom: 6px;
+        }
+
+        p.subtitle {
+            color: var(--text-muted);
+            font-size: 14px;
+        }
+
+        .progress-bar-container {
+            background: var(--accent-sand);
+            border-radius: 12px;
+            padding: 12px 16px;
+            margin-top: 12px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        .filter-buttons {
+            display: flex;
+            gap: 8px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-bottom: 24px;
+        }
+
+        .btn {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            color: var(--text-muted);
+            padding: 8px 16px;
+            border-radius: 20px;
             cursor: pointer;
-            position: relative;
-            background-color: #FFFFFF;
+            font-size: 13px;
+            transition: all 0.2s;
         }
-        .custom-checkbox:checked {
-            background-color: #A3B18A;
-            border-color: #A3B18A;
+
+        .btn.active, .btn:hover {
+            background: var(--text-main);
+            color: #FFF;
+            border-color: var(--text-main);
         }
-        .custom-checkbox:checked::after {
-            content: '';
-            position: absolute;
-            left: 0.35rem;
-            top: 0.15rem;
-            width: 0.35rem;
-            height: 0.65rem;
-            border: solid white;
-            border-width: 0 2px 2px 0;
-            transform: rotate(45deg);
+
+        .week-title {
+            font-size: 18px;
+            margin: 24px 0 12px 0;
+            color: var(--text-main);
+            display: flex;
+            align-items: center;
+            gap: 10px;
         }
-        .custom-checkbox:hover {
-            border-color: #8C7A6B;
+
+        .badge {
+            font-size: 11px;
+            padding: 3px 8px;
+            border-radius: 10px;
+            background: var(--accent-sand);
+            color: var(--text-muted);
+            font-weight: normal;
+        }
+
+        .badge.retinol {
+            background: var(--amber-bg);
+            color: var(--amber-accent);
+            border: 1px solid var(--amber-accent);
+        }
+
+        .days-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 16px;
+        }
+
+        .day-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 16px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .day-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 12px;
+            padding-bottom: 8px;
+            border-bottom: 1px dashed var(--border-color);
+        }
+
+        .day-name {
+            font-weight: 600;
+            font-size: 16px;
+        }
+
+        .day-num {
+            font-size: 12px;
+            color: var(--text-muted);
+        }
+
+        .section-box {
+            background: var(--bg-color);
+            border-radius: 10px;
+            padding: 10px;
+            margin-bottom: 10px;
+        }
+
+        .section-time {
+            font-size: 11px;
+            font-weight: 700;
+            color: var(--text-muted);
+            margin-bottom: 8px;
+            display: block;
+            text-transform: uppercase;
+        }
+
+        .task-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 8px;
+            margin-bottom: 6px;
+            font-size: 13px;
+            cursor: pointer;
+            line-height: 1.3;
+        }
+
+        .task-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .task-item input {
+            margin-top: 2px;
+            accent-color: var(--green-accent);
+            width: 16px;
+            height: 16px;
+            cursor: pointer;
+        }
+
+        .retinol-text {
+            color: var(--amber-accent);
+            font-weight: 600;
+        }
+
+        .reset-btn {
+            display: block;
+            margin: 40px auto 20px auto;
+            background: transparent;
+            border: none;
+            color: var(--text-muted);
+            text-decoration: underline;
+            cursor: pointer;
+            font-size: 12px;
         }
     </style>
 </head>
-<body class="min-h-screen pb-12">
+<body>
 
-    <!-- Шапка -->
-    <header class="bg-sand/60 border-b border-nude backdrop-blur-md sticky top-0 z-50 py-4 px-4 sm:px-8">
-        <div class="max-w-5xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4">
-            <div>
-                <h1 class="font-serif text-2xl sm:text-3xl text-deepTaupe tracking-wide">Программа ухода за кожей</h1>
-                <p class="text-xs sm:text-sm text-warmTaupe mt-0.5">Курс: 4 Недели (28 Дней) • Старт: Среда</p>
-            </div>
-            
-            <!-- Общий прогресс -->
-            <div class="flex items-center gap-4 bg-white/80 px-4 py-2 rounded-2xl border border-nude shadow-sm">
-                <div class="text-right">
-                    <div class="text-xs text-warmTaupe font-medium">Общий прогресс</div>
-                    <div id="overall-percentage" class="text-lg font-bold text-deepTaupe">0%</div>
-                </div>
-                <div class="w-12 h-12 rounded-full bg-sand flex items-center justify-center p-1 relative">
-                    <svg class="w-full h-full transform -rotate-90" viewBox="0 0 36 36">
-                        <path class="text-nude" stroke-width="3" stroke="currentColor" fill="none" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" />
-                        <path id="progress-circle" class="text-sage" stroke-dasharray="0, 100" stroke-width="3.5" stroke-linecap="round" stroke="currentColor" fill="none" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" />
-                    </svg>
-                </div>
-            </div>
+    <header>
+        <h1>Ежемесячный Трекер Ухода за Кожей</h1>
+        <p class="subtitle">4 недели (28 дней) • Старт со среды</p>
+        <div class="progress-bar-container">
+            <span>Общий прогресс месяца:</span>
+            <span id="overall-progress-text">0%</span>
         </div>
     </header>
 
-    <main class="max-w-5xl mx-auto px-4 sm:px-8 mt-8">
+    <div class="filter-buttons">
+        <button class="btn active" onclick="filterWeek('all')">Все 4 недели</button>
+        <button class="btn" onclick="filterWeek(1)">Неделя 1</button>
+        <button class="btn" onclick="filterWeek(2)">Неделя 2</button>
+        <button class="btn" onclick="filterWeek(3)">Неделя 3</button>
+        <button class="btn" onclick="filterWeek(4)">Неделя 4</button>
+    </div>
 
-        <!-- Навигация по неделям -->
-        <div class="flex flex-wrap justify-center gap-2 sm:gap-3 mb-8">
-            <button onclick="filterWeek('all')" id="tab-all" class="tab-btn active px-4 py-2 rounded-xl text-xs sm:text-sm font-medium transition-all bg-deepTaupe text-white shadow-sm">
-                Все 4 недели
-            </button>
-            <button onclick="filterWeek(1)" id="tab-1" class="tab-btn px-4 py-2 rounded-xl text-xs sm:text-sm font-medium transition-all bg-white border border-nude text-warmTaupe hover:bg-sand">
-                Неделя 1 (Адаптация)
-            </button>
-            <button onclick="filterWeek(2)" id="tab-2" class="tab-btn px-4 py-2 rounded-xl text-xs sm:text-sm font-medium transition-all bg-white border border-nude text-warmTaupe hover:bg-sand">
-                Неделя 2
-            </button>
-            <button onclick="filterWeek(3)" id="tab-3" class="tab-btn px-4 py-2 rounded-xl text-xs sm:text-sm font-medium transition-all bg-white border border-nude text-warmTaupe hover:bg-sand">
-                Неделя 3 (Ввод ретинола)
-            </button>
-            <button onclick="filterWeek(4)" id="tab-4" class="tab-btn px-4 py-2 rounded-xl text-xs sm:text-sm font-medium transition-all bg-white border border-nude text-warmTaupe hover:bg-sand">
-                Неделя 4
-            </button>
-        </div>
+    <div id="calendar-content"></div>
 
-        <!-- Контейнер календаря -->
-        <div id="calendar-container" class="space-y-8">
-            <!-- Дни будут сгенерированы скриптом -->
-        </div>
-
-        <!-- Кнопка сброса -->
-        <div class="mt-12 text-center">
-            <button onclick="resetTracker()" class="text-xs text-warmTaupe hover:text-roseSoft underline transition-colors">
-                Сбросить весь прогресс
-            </button>
-        </div>
-
-    </main>
+    <button class="reset-btn" onclick="resetAll()">Сбросить весь сохраненный прогресс</button>
 
     <script>
-        // Структура данных ухода
-        const weekDays = ['Среда', 'Четверг', 'Пятница', 'Суббота', 'Воскресенье', 'Понедельник', 'Вторник'];
-        
-        // Ретинол: Вт и Пт на 3-й неделе; Вт, Чт, Сб на 4-й неделе
-        const retinolDays = {
-            3: [0, 3], // Среда(0), Суббота(3) в рамках цикла Ср-Вт
-            4: [0, 2, 4]  // Среда, Пятница, Воскресенье
-        };
+        const daysOfWeek = ['Среда', 'Четверг', 'Пятница', 'Суббота', 'Воскресенье', 'Понедельник', 'Вторник'];
 
-        const morningRoutine = [
-            { id: 'm1', text: 'Умывание муссом Geltek с алоэ вера' },
-            { id: 'm2', text: 'Крем Geltek NMF-Protection' },
-            { id: 'm3', text: 'Солнцезащитный крем (SPF 30-50)' }
-        ];
-
-        function getEveningRoutine(isRetinol) {
-            if (isRetinol) {
-                return [
-                    { id: 'e1', text: 'Умывание муссом Geltek с алоэ вера' },
-                    { id: 'e2', text: 'Сухая кожа (10 мин) + Retiderm 0.25' },
-                    { id: 'e3', text: 'Пауза 20 мин + NMF-Protection' }
-                ];
-            } else {
-                return [
-                    { id: 'e1', text: 'Умывание муссом Geltek с алоэ вера' },
-                    { id: 'e2', text: 'Крем Geltek NMF-Protection' }
-                ];
-            }
+        function isRetinolDay(week, dayIndex) {
+            // Неделя 3: Среда(0) и Суббота(3)
+            if (week === 3 && (dayIndex === 0 || dayIndex === 3)) return true;
+            // Неделя 4: Среда(0), Пятница(2), Воскресенье(4)
+            if (week === 4 && (dayIndex === 0 || dayIndex === 2 || dayIndex === 4)) return true;
+            return false;
         }
 
-        // Загрузка состояния из localStorage
         function loadState() {
-            const saved = localStorage.getItem('skincare_tracker_state');
+            const saved = localStorage.getItem('skincare_tracker_app');
             return saved ? JSON.parse(saved) : {};
         }
 
-        // Сохранение состояния
         function saveState(state) {
-            localStorage.setItem('skincare_tracker_state', JSON.stringify(state));
+            localStorage.setItem('skincare_tracker_app', JSON.stringify(state));
             updateOverallProgress();
         }
 
-        // Переключение чекбокса
-        function toggleCheck(key) {
+        function toggleTask(id) {
             const state = loadState();
-            state[key] = !state[key];
+            state[id] = !state[id];
             saveState(state);
-            
-            const checkbox = document.getElementById(key);
-            if (checkbox) {
-                checkbox.checked = state[key];
-            }
-            updateDayProgress(key.split('-')[0]);
         }
 
-        // Создание элементов календаря
+        function updateOverallProgress() {
+            const state = loadState();
+            const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+            if (checkboxes.length === 0) return;
+
+            let checked = 0;
+            checkboxes.forEach(cb => {
+                if (state[cb.id]) checked++;
+            });
+
+            const percent = Math.round((checked / checkboxes.length) * 100);
+            document.getElementById('overall-progress-text').innerText = percent + '%';
+        }
+
         function renderCalendar() {
-            const container = document.getElementById('calendar-container');
+            const container = document.getElementById('calendar-content');
             container.innerHTML = '';
             const state = loadState();
 
-            let totalDaysCount = 28;
-            let currentDayNum = 1;
+            let dayCounter = 1;
 
             for (let week = 1; week <= 4; week++) {
-                const weekSection = document.createElement('div');
-                weekSection.className = `week-section week-${week} space-y-4`;
-                
-                // Заголовок недели
-                const weekHeader = document.createElement('div');
-                weekHeader.className = 'flex items-center gap-3 border-b border-nude pb-2 pt-4';
-                weekHeader.innerHTML = `
-                    <h2 class="font-serif text-xl text-deepTaupe">Неделя ${week}</h2>
-                    <span class="text-xs px-2.5 py-1 rounded-full ${week >= 3 ? 'bg-amberLight text-amberSoft font-semibold border border-amberSoft/20' : 'bg-sand text-warmTaupe'}">
-                        ${week === 1 ? 'Базовый уход (Адаптация)' : week === 2 ? 'Базовый уход' : week === 3 ? 'Ввод ретинола (2 р/нед)' : 'Ретинол (3 р/нед)'}
-                    </span>
-                `;
-                weekSection.appendChild(weekHeader);
+                const weekWrapper = document.createElement('div');
+                weekWrapper.className = `week-block week-${week}`;
 
-                const daysGrid = document.createElement('div');
-                daysGrid.className = 'grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4';
+                let badgeText = week === 1 ? 'Адаптация (без ретинола)' : week === 2 ? 'Базовый уход' : week === 3 ? 'Ретинол 2 р/нед' : 'Ретинол 3 р/нед';
+                let isRetinolWeek = week >= 3;
+
+                weekWrapper.innerHTML = `
+                    <div class="week-title">
+                        Неделя ${week} 
+                        <span class="badge ${isRetinolWeek ? 'retinol' : ''}">${badgeText}</span>
+                    </div>
+                `;
+
+                const grid = document.createElement('div');
+                grid.className = 'days-grid';
 
                 for (let dayIdx = 0; dayIdx < 7; dayIdx++) {
-                    const dayNum = currentDayNum;
-                    const dayName = weekDays[dayIdx];
-                    const isRetinolDay = (week === 3 && (dayIdx === 2 || dayIdx === 5)) || (week === 4 && (dayIdx === 2 || dayIdx === 4 || dayIdx === 6)); // Подстройка под Вт/Пт/Сб
-                    
-                    const dayCard = document.createElement('div');
-                    dayCard.className = `bg-white rounded-2xl p-5 border ${isRetinolDay ? 'border-amberSoft/40 shadow-sm bg-gradient-to-b from-amberLight/30 to-white' : 'border-nude'} transition-all hover:shadow-md relative flex flex-col justify-between`;
-                    dayCard.id = `day-card-${dayNum}`;
+                    const dayNum = dayCounter;
+                    const dayName = daysOfWeek[dayIdx];
+                    const retinol = isRetinolDay(week, dayIdx);
 
-                    const eveningSteps = getEveningRoutine(isRetinolDay);
+                    const card = document.createElement('div');
+                    card.className = 'day-card';
 
-                    let morningHtml = morningRoutine.map(step => {
-                        const key = `d${dayNum}-${step.id}`;
-                        const checked = state[key] ? 'checked' : '';
-                        return `
-                            <label class="flex items-start gap-2.5 text-xs text-deepTaupe/90 cursor-pointer group">
-                                <input type="checkbox" id="${key}" ${checked} onchange="toggleCheck('${key}')" class="custom-checkbox mt-0.5">
-                                <span class="group-hover:text-deepTaupe leading-tight">${step.text}</span>
+                    const m1Key = `d${dayNum}_m1`;
+                    const m2Key = `d${dayNum}_m2`;
+                    const m3Key = `d${dayNum}_m3`;
+
+                    const e1Key = `d${dayNum}_e1`;
+                    const e2Key = `d${dayNum}_e2`;
+                    const e3Key = `d${dayNum}_e3`;
+
+                    let eveningHtml = '';
+                    if (retinol) {
+                        eveningHtml = `
+                            <label class="task-item">
+                                <input type="checkbox" id="${e1Key}" ${state[e1Key] ? 'checked' : ''} onchange="toggleTask('${e1Key}')">
+                                <span>Умывание муссом с алоэ</span>
+                            </label>
+                            <label class="task-item">
+                                <input type="checkbox" id="${e2Key}" ${state[e2Key] ? 'checked' : ''} onchange="toggleTask('${e2Key}')">
+                                <span class="retinol-text">Сухая кожа (10 мин) + Retiderm 0.25</span>
+                            </label>
+                            <label class="task-item">
+                                <input type="checkbox" id="${e3Key}" ${state[e3Key] ? 'checked' : ''} onchange="toggleTask('${e3Key}')">
+                                <span>Пауза 20 мин + крем NMF-Protection</span>
                             </label>
                         `;
-                    }).join('');
-
-                    let eveningHtml = eveningSteps.map(step => {
-                        const key = `d${dayNum}-${step.id}`;
-                        const checked = state[key] ? 'checked' : '';
-                        const isRetinolStep = step.text.includes('Retiderm');
-                        return `
-                            <label class="flex items-start gap-2.5 text-xs text-deepTaupe/90 cursor-pointer group">
-                                <input type="checkbox" id="${key}" ${checked} onchange="toggleCheck('${key}')" class="custom-checkbox mt-0.5">
-                                <span class="group-hover:text-deepTaupe leading-tight ${isRetinolStep ? 'font-semibold text-amberSoft' : ''}">${step.text}</span>
+                    } else {
+                        eveningHtml = `
+                            <label class="task-item">
+                                <input type="checkbox" id="${e1Key}" ${state[e1Key] ? 'checked' : ''} onchange="toggleTask('${e1Key}')">
+                                <span>Умывание муссом с алоэ</span>
+                            </label>
+                            <label class="task-item">
+                                <input type="checkbox" id="${e2Key}" ${state[e2Key] ? 'checked' : ''} onchange="toggleTask('${e2Key}')">
+                                <span>Крем NMF-Protection</span>
                             </label>
                         `;
-                    }).join('');
+                    }
 
-                    dayCard.innerHTML = `
+                    card.innerHTML = `
                         <div>
-                            <!-- День / Дата -->
-                            <div class="flex justify-between items-start mb-4">
-                                <div>
-                                    <span class="text-xs font-semibold text-warmTaupe uppercase tracking-wider">День ${dayNum}</span>
-                                    <h3 class="font-serif text-lg text-deepTaupe">${dayName}</h3>
-                                </div>
-                                ${isRetinolDay ? '<span class="text-[10px] bg-amberSoft text-white px-2 py-0.5 rounded-md font-medium">Ретинол</span>' : ''}
+                            <div class="day-header">
+                                <span class="day-name">${dayName}</span>
+                                <span class="day-num">День ${dayNum}</span>
                             </div>
 
-                            <!-- Утренний уход -->
-                            <div class="mb-4 bg-sand/40 p-3 rounded-xl border border-nude/50">
-                                <div class="flex items-center justify-between mb-2">
-                                    <span class="text-[11px] font-bold text-warmTaupe uppercase tracking-wider flex items-center gap-1">
-                                        ☀️ Утро <span class="text-[10px] font-normal opacity-75">(10:00)</span>
-                                    </span>
-                                </div>
-                                <div class="space-y-2">
-                                    ${morningHtml}
-                                </div>
+                            <div class="section-box">
+                                <span class="section-time">☀️ Утро (10:00)</span>
+                                <label class="task-item">
+                                    <input type="checkbox" id="${m1Key}" ${state[m1Key] ? 'checked' : ''} onchange="toggleTask('${m1Key}')">
+                                    <span>Умывание муссом с алоэ</span>
+                                </label>
+                                <label class="task-item">
+                                    <input type="checkbox" id="${m2Key}" ${state[m2Key] ? 'checked' : ''} onchange="toggleTask('${m2Key}')">
+                                    <span>Крем NMF-Protection</span>
+                                </label>
+                                <label class="task-item">
+                                    <input type="checkbox" id="${m3Key}" ${state[m3Key] ? 'checked' : ''} onchange="toggleTask('${m3Key}')">
+                                    <span>Солнцезащитный крем (SPF)</span>
+                                </label>
                             </div>
 
-                            <!-- Вечерний уход -->
-                            <div class="bg-sand/40 p-3 rounded-xl border border-nude/50">
-                                <div class="flex items-center justify-between mb-2">
-                                    <span class="text-[11px] font-bold text-warmTaupe uppercase tracking-wider flex items-center gap-1">
-                                        🌙 Вечер <span class="text-[10px] font-normal opacity-75">(21:00)</span>
-                                    </span>
-                                </div>
-                                <div class="space-y-2">
-                                    ${eveningHtml}
-                                </div>
+                            <div class="section-box">
+                                <span class="section-time">🌙 Вечер (21:00)</span>
+                                ${eveningHtml}
                             </div>
-                        </div>
-
-                        <!-- Прогресс дня -->
-                        <div class="mt-4 pt-3 border-t border-nude/40 flex justify-between items-center text-[11px] text-warmTaupe">
-                            <span>Выполнено</span>
-                            <span id="day-progress-${dayNum}" class="font-semibold text-deepTaupe">0%</span>
                         </div>
                     `;
 
-                    daysGrid.appendChild(dayCard);
-                    currentDayNum++;
+                    grid.appendChild(card);
+                    dayCounter++;
                 }
 
-                weekSection.appendChild(daysGrid);
-                container.appendChild(weekSection);
+                weekWrapper.appendChild(grid);
+                container.appendChild(weekWrapper);
             }
 
-            // Обновить все прогрессы
-            for (let i = 1; i <= 28; i++) {
-                updateDayProgress(i);
-            }
             updateOverallProgress();
         }
 
-        // Обновление прогресса конкретного дня
-        function updateDayProgress(dayNum) {
-            const state = loadState();
-            const dayCard = document.getElementById(`day-card-${dayNum}`);
-            if (!dayCard) return;
-
-            const checkboxes = dayCard.querySelectorAll('input[type="checkbox"]');
-            let checkedCount = 0;
-            checkboxes.forEach(cb => {
-                if (state[cb.id]) checkedCount++;
-            });
-
-            const percent = Math.round((checkedCount / checkboxes.length) * 100);
-            const progressEl = document.getElementById(`day-progress-${dayNum}`);
-            if (progressEl) progressEl.innerText = `${percent}%`;
-        }
-
-        // Обновление общего прогресса по всему месяцу
-        function updateOverallProgress() {
-            const state = loadState();
-            const allCheckboxes = document.querySelectorAll('input[type="checkbox"]');
-            if (allCheckboxes.length === 0) return;
-
-            let totalChecked = 0;
-            allCheckboxes.forEach(cb => {
-                if (state[cb.id]) totalChecked++;
-            });
-
-            const percent = Math.round((totalChecked / allCheckboxes.length) * 100);
-            
-            document.getElementById('overall-percentage').innerText = `${percent}%`;
-            
-            const circle = document.getElementById('progress-circle');
-            if (circle) {
-                circle.setAttribute('stroke-dasharray', `${percent}, 100`);
-            }
-        }
-
-        // Фильтр по неделям
         function filterWeek(weekNum) {
-            document.querySelectorAll('.tab-btn').forEach(btn => {
-                btn.classList.remove('bg-deepTaupe', 'text-white');
-                btn.classList.add('bg-white', 'text-warmTaupe');
-            });
+            const buttons = document.querySelectorAll('.filter-buttons .btn');
+            buttons.forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
 
-            const activeBtn = document.getElementById(`tab-${weekNum}`);
-            if (activeBtn) {
-                activeBtn.classList.remove('bg-white', 'text-warmTaupe');
-                activeBtn.classList.add('bg-deepTaupe', 'text-white');
-            }
-
-            document.querySelectorAll('.week-section').forEach(section => {
+            const blocks = document.querySelectorAll('.week-block');
+            blocks.forEach(block => {
                 if (weekNum === 'all') {
-                    section.classList.remove('hidden');
+                    block.style.display = 'block';
                 } else {
-                    if (section.classList.contains(`week-${weekNum}`)) {
-                        section.classList.remove('hidden');
+                    if (block.classList.contains(`week-${weekNum}`)) {
+                        block.style.display = 'block';
                     } else {
-                        section.classList.add('hidden');
+                        block.style.display = 'none';
                     }
                 }
             });
         }
 
-        // Полный сброс трекера
-        function resetTracker() {
-            if (confirm('Вы уверены, что хотите сбросить весь отмеченный прогресс?')) {
-                localStorage.removeItem('skincare_tracker_state');
+        function resetAll() {
+            if (confirm('Сбросить весь отмеченный прогресс?')) {
+                localStorage.removeItem('skincare_tracker_app');
                 renderCalendar();
             }
         }
 
-        // Инициализация при загрузке страницы
-        document.addEventListener('DOMContentLoaded', () => {
-            renderCalendar();
-        });
+        document.addEventListener('DOMContentLoaded', renderCalendar);
     </script>
 </body>
 </html>
